@@ -1,0 +1,24 @@
+<!--miniprogram/pages/apply/apply.wxml-->
+
+
+<view class="userinfow">
+  <open-data type="userAvatarUrl" class="avatar"></open-data>
+  <view class="nickName">
+    <open-data type="userNickName" class="nickNamebold"></open-data>
+    ，您好！
+  </view>
+  <view class="remind">欢迎参与老北方航空大毕改飞行学员招聘！</view>
+  <view class="remind">如您已在“招飞介绍”中确认自己符合条件,</view>
+  <view class="remind">
+    即可立即发起您的2020春招飞行学员流程！
+  </view>
+  <!-- <view class="blank"></view> -->
+  <view class="begin">
+    <checkbox-group bindchange="ifAgreeCheckboxChange">
+      <label class="contract">
+        <checkbox value="1" color="#d22222"/>我已阅读并同意《老北方航空2020上半年大学生飞行学员招聘简章》
+      </label>
+    </checkbox-group>
+    <button size="default" type="warn" disabled="{{beginApply}}" open-type="getUserInfo" bindgetuserinfo="onUserinfo" class="begin-button">立即发起申请流程</button>
+  </view>
+</view>

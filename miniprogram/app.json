@@ -1,0 +1,42 @@
+{
+  "pages": [
+    "pages/apply/apply",
+    "pages/index/index",
+    "pages/tools/tools",
+    "pages/cv/cv"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "121航空大毕改招飞",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "custom": true,
+    "color": "#7A7E83",
+    "selectedColor": "#d22222",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "招飞介绍"
+      },
+      {
+        "pagePath": "pages/apply/apply",
+        "text": "申请流程"
+      },
+      {
+        "pagePath": "pages/tools/tools",
+        "text": "自检工具"
+      },
+      {
+        "pagePath": "pages/cv/cv",
+        "text": "填写信息"
+      }
+    ]
+  },
+  "usingComponents": {},
+  "sitemapLocation": "sitemap.json"
+}
