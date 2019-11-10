@@ -54,17 +54,17 @@ Page({
       },
     ],
 
-    date: "2016-09-01",
-    time: "12:01",
+    birthDate:'1996-01-01',
 
-    countryCodes: ["+86", "+80", "+84", "+87"],
-    countryCodeIndex: 0,
 
-    countries: ["中国", "美国", "英国"],
-    countryIndex: 0,
+    region: ['广东省', '深圳市', '南山区'],
+    customItem: '全部',
 
-    accounts: ["微信号", "QQ", "Email"],
-    accountIndex: 0,
+    politicalStatus: ['群众', '中共党员', '中共预备党员', '共青团员', '民革党员', '民盟盟员', '民建会员', '民进会员', '农工党党员', '致公党党员', '九三学社社员', '台盟盟员', '无党派人士',],
+    politicalStatusIndex:0,
+
+    education:['大学本科','硕士研究生','博士研究生'],
+    educationIndex:0,
 
     isAgree: false,
     formData: {
@@ -107,10 +107,10 @@ Page({
 
   },
 
-  formSubmit: function(e) {
+  formSubmit: function (e) {
     console.log('form发生了submit事件，携带数据为：', e.detail.value)
   },
-  formReset: function() {
+  formReset: function () {
     console.log('form发生了reset事件')
   },
   radioChange: function(e) {
@@ -148,45 +148,39 @@ Page({
       [`formData.checkbox`]: e.detail.value
     });
   },
-  bindDateChange: function(e) {
-    this.setData({
-      date: e.detail.value,
-      [`formData.date`]: e.detail.value
-    })
-  },
-  formInputChange(e) {
-    const {
-      field
-    } = e.currentTarget.dataset
-    this.setData({
-      [`formData.${field}`]: e.detail.value
-    })
 
+  bindBirthDateChange: function(e) {
+    this.setData({
+      birthDate: e.detail.value,
+    })
   },
+
   bindTimeChange: function(e) {
     this.setData({
       time: e.detail.value
     })
   },
   bindCountryCodeChange: function(e) {
-    console.log('picker country code 发生选择改变，携带值为', e.detail.value);
 
     this.setData({
       countryCodeIndex: e.detail.value
     })
   },
-  bindCountryChange: function(e) {
-    console.log('picker country 发生选择改变，携带值为', e.detail.value);
+  bindPoliticalStatusChange: function(e) {
 
     this.setData({
-      countryIndex: e.detail.value
+      politicalStatusIndex: e.detail.value
     })
   },
-  bindAccountChange: function(e) {
-    console.log('picker account 发生选择改变，携带值为', e.detail.value);
+  bindEducationChange: function (e) {
 
     this.setData({
-      accountIndex: e.detail.value
+      educationIndex: e.detail.value
+    })
+  },
+  bindRegionChange: function (e) {
+    this.setData({
+      region: e.detail.value
     })
   },
   bindAgreeChange: function(e) {
@@ -194,29 +188,6 @@ Page({
       isAgree: !!e.detail.value.length
     });
   },
-
-  submitForm() {
-
-    
-    this.selectComponent('#form').validate((valid, errors) => {
-      
-      console.log('valid', valid, errors)
-      if (!valid) {
-        const firstError = Object.keys(errors)
-        if (firstError.length) {
-          this.setData({
-            error: errors[firstError[0]].message
-          })
-
-        }
-      } else {
-        wx.showToast({
-          title: '校验通过'
-        })
-      }
-    })
-  },
-
 
   /**
    * 生命周期函数--监听页面加载

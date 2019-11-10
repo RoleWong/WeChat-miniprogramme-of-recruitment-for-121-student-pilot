@@ -1,12 +1,79 @@
 <mp-toptips msg="{{error}}" type="error" show="{{error}}"></mp-toptips>
 <view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
   <view class="page__hd">
-    <view class="page__title">Form</view>
-    <view class="page__desc">表单输入</view>
+
   </view>
+
   <view class="page__bd">
     <form bindsubmit="formSubmit" bindreset="formReset">
       <mp-form id="form" rules="{{rules}}" models="{{formData}}">
+
+
+        <mp-cells title="基本信息" footer="以上信息全部必填">
+          <mp-cell title="姓名">
+            <input class="weui-input" placeholder="请输入中文全名" name="name" />
+          </mp-cell>
+          <mp-cell title="民族">
+            <input class="weui-input" placeholder="" name="name" />
+          </mp-cell>
+          <mp-cell title="出生日期">
+            <picker value="{{birthDate}}" start="1996-01-01" end="2001-01-01" name="birthDate" mode="date" data-field="date" bindchange="bindBirthDateChange">
+              <view class="weui-input">{{birthDate}}</view>
+            </picker>
+          </mp-cell>
+          <mp-cell title="户口所在地">
+            <picker name="birthCity" mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+              <view class="weui-input">{{region}}</view>
+            </picker>
+          </mp-cell>
+          <mp-cell title="身高">
+            <input class="weui-input" type="number" placeholder="单位：cm" name="height" />
+          </mp-cell>
+          <mp-cell title="体重">
+            <input class="weui-input" type="number" placeholder="单位：kg" name="weight" />
+          </mp-cell>
+          <mp-cell title="移动电话">
+            <input class="weui-input" placeholder="仅限中国大陆手机号" name="mobile" />
+          </mp-cell>
+          <mp-cell title="政治面貌">
+            <picker bindchange="bindPoliticalStatusChange" value="{{politicalStatusIndex}}" range="{{politicalStatus}}" name="politicalStatus">
+              <view class="weui-input">{{politicalStatus[politicalStatusIndex]}}</view>
+            </picker>
+          </mp-cell>
+          <mp-cell title="身份证号">
+          <input class="weui-input" type="idcard" placeholder="仅限中国大陆公民身份证" name="idcard" />
+        </mp-cell>
+        </mp-cells>
+
+        <mp-cells title="教育背景">
+          <mp-cell title="毕业院校">
+            <input class="weui-input" placeholder="" name="university" />
+          </mp-cell>
+          <mp-cell title="最高学历">
+            <picker bindchange="bindEducationChange" value="{{educationIndex}}" range="{{education}}" name="education">
+              <view class="weui-input">{{education[educationIndex]}}</view>
+            </picker>
+          </mp-cell>
+
+          <!-- 这两个JS项目还没配置好 -->
+          <mp-cell title="入学时间">
+            <picker value="{{entryDate}}" start="2009-09" end="2017-09" name="entryDate" mode="date" data-field="date" bindchange="bindEntryDateChange">
+              <view class="weui-input">{{entryDate}}</view>
+            </picker>
+          </mp-cell>
+          <mp-cell title="毕业时间">
+            <picker value="{{date}}" start="2013-09" end="2021-09" name="birthDate" mode="date" data-field="date" bindchange="bindDateChange">
+              <view class="weui-input">{{date}}</view>
+            </picker>
+          </mp-cell>
+        </mp-cells>
+
+
+
+
+
+
+
         <mp-cells title="单选列表项">
           <mp-checkbox-group prop="radio" multi="{{false}}" bindchange="radioChange">
             <mp-checkbox wx:for="{{radioItems}}" wx:key="value" label="{{item.name}}" value="{{item.value}}" checked="{{item.checked}}"></mp-checkbox>
@@ -20,7 +87,7 @@
 
         <mp-cells title="表单" footer="底部说明文字底部说明文字">
           <mp-cell prop="qq" title="qq" ext-class="">
-            <input bindinput="formInputChange" data-field="qq" class="weui-input" placeholder="请输入qq" />
+            <input bindinput="formInputChange" data-field="qq" class="weui-input" placeholder="请输入qq" name="qq" />
           </mp-cell>
           <mp-cell prop="mobile" title="手机号" ext-class=" weui-cell_vcode">
             <input bindinput="formInputChange" data-field="mobile" class="weui-input" placeholder="请输入手机号" />
@@ -31,7 +98,6 @@
               <view class="weui-input">{{date}}</view>
             </picker>
           </mp-cell>
-
         </mp-cells>
         <mp-cells title="提交后表单项报错">
           <mp-cell show-error prop="idcard" title="卡号" ext-class="">
@@ -118,7 +184,7 @@
       </checkbox-group>
 
       <view class="weui-btn-area">
-        <button class="weui-btn" type="primary" bindtap="submitForm">确定</button>
+        <button class="weui-btn" type="primary" formType="submit">确定</button>
       </view>
 
       <view class="weui-btn-area">
