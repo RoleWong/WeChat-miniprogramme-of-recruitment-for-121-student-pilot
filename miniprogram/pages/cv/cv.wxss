@@ -1,0 +1,8 @@
+.margin-bottom{
+  margin-bottom: 200rpx;
+}
+
+.photo{
+  height:280rpx;
+
+}

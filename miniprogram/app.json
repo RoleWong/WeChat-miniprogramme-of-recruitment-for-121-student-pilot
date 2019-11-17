@@ -1,14 +1,15 @@
 {
   "pages": [
-    "pages/apply/apply",
     "pages/index/index",
+    "pages/apply/apply",
     "pages/tools/tools",
-    "pages/cv/cv"
+    "pages/cv/cv",
+    "pages/orderfirstinterview/orderfirstinterview"
   ],
   "window": {
-    "backgroundColor": "#F6F6F6",
+    "backgroundColor": "#ffffff",
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarBackgroundColor": "#ffffff",
     "navigationBarTitleText": "121航空大毕改招飞",
     "navigationBarTextStyle": "black"
   },
@@ -34,6 +35,10 @@
       {
         "pagePath": "pages/cv/cv",
         "text": "填写信息"
+      },
+      {
+        "pagePath": "pages/orderfirstinterview/orderfirstinterview",
+        "text": "预约一面"
       }
     ]
   },

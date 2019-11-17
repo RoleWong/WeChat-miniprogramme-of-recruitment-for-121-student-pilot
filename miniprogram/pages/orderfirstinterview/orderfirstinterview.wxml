@@ -1,0 +1,23 @@
+<!--miniprogram/pages/orderfirstinterview/orderfirstinterview.wxml-->
+
+<view class="headRemind1">恭喜，您已报名成功！</view>
+<view class="headRemind2">现在请选择一个合适的初面场次。</view>
+
+<radio-group bindchange="radioChange">
+  <view class="session" wx:for="{{interview}}" wx:for-item="currentInterview" wx:key="interview">
+    <view class="city">{{currentInterview.city}}</view>
+    <view class="detail">
+      <view class="date">{{currentInterview.timeInfo.year}}年{{currentInterview.timeInfo.month}}月{{currentInterview.timeInfo.date}}日 {{currentInterview.timeInfo.hours}}:{{currentInterview.timeInfo.minutes}}开始</view>
+      <view class="address">{{currentInterview.address}}{{currentInterview.place}}</view>
+    </view>
+    <view class="choose">
+      <radio value="{{currentInterview._id}}">
+      </radio>
+    </view>
+  </view>
+
+</radio-group>
+<view class="submit">
+  <button class="submit-button" type="warn" bindtap="onSubmit">确认预约</button>
+  <button class="submit-button" type="default">修改报名表</button>
+</view>

@@ -51,6 +51,12 @@ Component({
                 url
               })
             }
+            if (statusCode == 1) {
+              const url = "../../pages/orderfirstinterview/orderfirstinterview"
+              wx.switchTab({
+                url
+              })
+            }
             
             that.setData({
               selected: data.index

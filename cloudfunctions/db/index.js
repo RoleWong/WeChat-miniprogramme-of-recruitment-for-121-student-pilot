@@ -5,6 +5,10 @@ cloud.init({
 });
 var db = cloud.database();
 
+function fixZero(num) {
+  return num < 10 ? '0' + num : num;
+};
+
 async function register(event, context) {
   const wxContext = cloud.getWXContext()
   let checkIfRegistered = await db.collection('userinfo').where({
@@ -75,6 +79,81 @@ function getUserinfo(event, context) {
   }).get()
 };
 
+async function getInterview(event, context) {
+  var allInterview = await db.collection(event.session + 'interview').get();
+  console.log('全部面试场次', allInterview);
+
+  allInterview.data.forEach((item, index) => {
+    const date = new Date(item.date);
+    item.timeInfo = {
+      year: date.getFullYear(),
+      month: date.getMonth() + 1,
+      date: date.getDate(),
+      hours: date.getHours(),
+      minutes: fixZero(date.getMinutes())
+    };
+    // allInterview.data[index].date = date;
+  });
+
+  return allInterview;
+};
+
+async function confirmInterview(event, context) {
+  console.log('准备写入确认面试', event);
+  const wxContext = cloud.getWXContext();
+
+  await db.collection('status').where({
+      openid: wxContext.OPENID,
+    })
+    .update({
+      data: {
+        firstInterviewOrderId: event.pick,
+      },
+    });
+
+  //自身计数器增加功能还未完成
+
+  // db.collection('firstinterview').where({
+  //   _id: event.pick,
+  // })
+  //   .update({
+  //     data: {
+  //       firstInterviewOrderId: event.pick,
+  //     },
+  //   });
+};
+
+async function writeCV(event, context) {
+  console.log('开始录入面试简历1', event);
+  const wxContext = cloud.getWXContext();
+
+  var cv = {
+    openid: wxContext.OPENID,
+    cv_document: event.form,
+    cv_identificationPhoto: event.identificationPhoto
+  };
+
+  await db.collection('cv').add({
+    data: cv,
+    success: function(res) {
+      console.log('简历信息已录入', res)
+    },
+    fail: function(err) {
+      console.log('简历录入失败', err)
+    }
+  });
+  console.log('录入成功');
+
+  db.collection('status').where({
+      openid: wxContext.OPENID,
+    })
+    .update({
+      data: {
+        cv: 'pass'
+      },
+    });
+};
+
 async function checkIfRegister(event, context) {
   const wxContext = cloud.getWXContext()
   let checkIfRegistered = await db.collection('userinfo').where({
@@ -90,9 +169,9 @@ async function checkIfRegister(event, context) {
 async function getStatusCode(event, context) {
   const wxContext = cloud.getWXContext()
   let currentApllicantStatus = await db.collection('status').where({
-    openid: wxContext.OPENID, 
+    openid: wxContext.OPENID,
   }).get();
-  console.log(currentApllicantStatus.data[0]); 
+  console.log(currentApllicantStatus.data[0]);
 
   var statusCode = 0;
   if (currentApllicantStatus.data[0]) {
@@ -166,4 +245,14 @@ exports.main = async(event, context) => {
   if (event.type === 'getStatusCode') {
     return getStatusCode(event, context);
   }
+  if (event.type === 'writeCV') {
+    return writeCV(event, context);
+  }
+  if (event.type === 'getInterview') {
+    return getInterview(event, context);
+  }
+  if (event.type === 'confirmInterview') {
+    return confirmInterview(event, context);
+  }
+
 }
