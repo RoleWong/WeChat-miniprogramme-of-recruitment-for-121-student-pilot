@@ -1,4 +1,5 @@
 Component({
+
   data: {
     selected: 0,
     color: "#7A7E83",
@@ -26,6 +27,7 @@ Component({
   attached() {},
   methods: {
     switchTab(e) {
+      var app = getApp();
       var that = this;
       const data = e.currentTarget.dataset
       const index = data.index
@@ -52,7 +54,14 @@ Component({
               })
             }
             if (statusCode == 1) {
-              const url = "../../pages/orderfirstinterview/orderfirstinterview"
+              const url = "../../pages/orderInterview/orderInterview"
+              app.globalData.interviewStatus = "first"
+              wx.switchTab({
+                url
+              })
+            }
+            if (statusCode == 2) {
+              const url = "../../pages/orderInterview/orderInterview"
               wx.switchTab({
                 url
               })

@@ -4,7 +4,7 @@
     "pages/apply/apply",
     "pages/tools/tools",
     "pages/cv/cv",
-    "pages/orderfirstinterview/orderfirstinterview"
+    "pages/orderInterview/orderInterview"
   ],
   "window": {
     "backgroundColor": "#ffffff",
@@ -37,8 +37,8 @@
         "text": "填写信息"
       },
       {
-        "pagePath": "pages/orderfirstinterview/orderfirstinterview",
-        "text": "预约一面"
+        "pagePath": "pages/orderInterview/orderInterview",
+        "text": "预约面试"
       }
     ]
   },

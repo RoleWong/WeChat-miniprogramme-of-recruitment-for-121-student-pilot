@@ -1,5 +1,6 @@
 const cloud = require('wx-server-sdk')
 
+
 cloud.init({
   env: cloud.DYNAMIC_CURRENT_ENV
 });
@@ -102,25 +103,56 @@ async function confirmInterview(event, context) {
   console.log('准备写入确认面试', event);
   const wxContext = cloud.getWXContext();
 
-  await db.collection('status').where({
-      openid: wxContext.OPENID,
+  // 判断场次写入预约场次ID
+  if (event.session === "first") {
+    await db.collection('status').where({
+        openid: wxContext.OPENID,
+      })
+      .update({
+        data: {
+          firstInterviewOrderId: event.pick,
+        },
+      });
+  };
+  if (event.session === "second") {
+    await db.collection('status').where({
+        openid: wxContext.OPENID,
+      })
+      .update({
+        data: {
+          secondInterviewOrderId: event.pick,
+        },
+      });
+  };
+  if (event.session === "final") {
+    await db.collection('status').where({
+        openid: wxContext.OPENID,
+      })
+      .update({
+        data: {
+          finalInterviewOrderId: event.pick,
+        },
+      });
+  };
+
+  //场次自身计数器增加
+
+  let currentInterviewStatus = await db.collection(event.session + 'interview').where({
+    _id: event.pick,
+  }).get();
+
+  var newApplicantsNumber = currentInterviewStatus.data[0].applicants + 1;
+
+  console.log('准备将该场次的报名人数调整为', newApplicantsNumber);
+
+  db.collection(event.session + 'interview').where({
+      _id: event.pick,
     })
     .update({
       data: {
-        firstInterviewOrderId: event.pick,
+        applicants: newApplicantsNumber,
       },
     });
-
-  //自身计数器增加功能还未完成
-
-  // db.collection('firstinterview').where({
-  //   _id: event.pick,
-  // })
-  //   .update({
-  //     data: {
-  //       firstInterviewOrderId: event.pick,
-  //     },
-  //   });
 };
 
 async function writeCV(event, context) {
@@ -211,18 +243,22 @@ async function getStatusCode(event, context) {
     if (currentApllicantStatus.data[0].ielts === "pass") {
       statusCode = 11;
     }
-    if (currentApllicantStatus.data[0].finalTest === "pass") {
+    if (currentApllicantStatus.data[0].finalInterviewOrderId != 0) {
       statusCode = 12;
     }
-    if (currentApllicantStatus.data[0].pilotSchoolId != 0) {
+    if (currentApllicantStatus.data[0].finalIntervIewPass === "pass") {
       statusCode = 13;
     }
-    if (currentApllicantStatus.data[0].pilotSchoolPass === "pass") {
+    if (currentApllicantStatus.data[0].pilotSchoolId != 0) {
       statusCode = 14;
     }
-    if (currentApllicantStatus.data[0].offer === "pass") {
+    if (currentApllicantStatus.data[0].pilotSchoolPass === "pass") {
       statusCode = 15;
     }
+    if (currentApllicantStatus.data[0].offer === "pass") {
+      statusCode = 16;
+    }
+
     return statusCode;
   } else {
     return 666;

@@ -1,7 +1,7 @@
 <!--miniprogram/pages/orderfirstinterview/orderfirstinterview.wxml-->
 
-<view class="headRemind1">恭喜，您已报名成功！</view>
-<view class="headRemind2">现在请选择一个合适的初面场次。</view>
+<view class="headRemind1">{{headRemind1}}</view>
+<view class="headRemind2">{{headRemind2}}</view>
 
 <radio-group bindchange="radioChange">
   <view class="session" wx:for="{{interview}}" wx:for-item="currentInterview" wx:key="interview">
@@ -19,5 +19,5 @@
 </radio-group>
 <view class="submit">
   <button class="submit-button" type="warn" bindtap="onSubmit">确认预约</button>
-  <button class="submit-button" type="default">修改报名表</button>
+  <button class="submit-button" type="default">修改报名表（还未实现）</button>
 </view>
