@@ -4,7 +4,10 @@
     "pages/apply/apply",
     "pages/tools/tools",
     "pages/cv/cv",
-    "pages/orderInterview/orderInterview"
+    "pages/order/order",
+    "pages/waitingResult/waitingResult",
+    "pages/uploadbackgroundinvestigate/uploadbackgroundinvestigate",
+    "pages/ielts/ielts"
   ],
   "window": {
     "backgroundColor": "#ffffff",
@@ -25,10 +28,6 @@
         "text": "招飞介绍"
       },
       {
-        "pagePath": "pages/apply/apply",
-        "text": "申请流程"
-      },
-      {
         "pagePath": "pages/tools/tools",
         "text": "自检工具"
       },
@@ -37,8 +36,12 @@
         "text": "填写信息"
       },
       {
-        "pagePath": "pages/orderInterview/orderInterview",
-        "text": "预约面试"
+        "pagePath": "pages/order/order",
+        "text": "预约"
+      },
+      {
+        "pagePath": "pages/waitingResult/waitingResult",
+        "text": "等待结论"
       }
     ]
   },

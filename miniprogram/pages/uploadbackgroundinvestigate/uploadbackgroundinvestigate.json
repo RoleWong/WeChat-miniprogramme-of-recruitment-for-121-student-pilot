@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "背调资料上传",
+  "usingComponents": {
+    "mp-dialog": "../../components/dialog/dialog"
+  }
+}

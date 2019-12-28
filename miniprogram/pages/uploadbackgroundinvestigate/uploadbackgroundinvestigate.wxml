@@ -1,0 +1,67 @@
+<scroll-view scroll-y="true">
+  <view class="first">
+    <view class="first-remind">
+      <!-- <icon type="info" size="70" class="first-remind-icon" /> -->
+      <view class="first-remind-text-1">拍摄/上传您的背景调查资料</view>
+      <view class="first-remind-text-2">请尽快完成后上传</view>
+    </view>
+
+    <view class="background-uploader">
+
+      <view class="background-uploader-block" bindtap="uploadImg" data-index="information">
+        <view class="background-uploader-add" wx:if="{{!photos.informationtempFilePaths}}" >
+          <text class="background-uploader-add-icon">+</text>
+          <text class="background-uploader-add-des">点击拍摄/上传信息页</text>
+        </view>
+        <image src="{{photos.informationtempFilePaths}}" wx:if="{{photos.informationtempFilePaths}}"  class="background-uploader-thumbnail" mode="aspectFit"></image>
+        <view class="first-remind-text-2" wx:if="{{photos.informationtempFilePaths}}">点击修改信息页</view>
+      </view>
+
+      <view class="background-uploader-block" bindtap="uploadImg" data-index="certification">
+        <view class="background-uploader-add" wx:if="{{!photos.certificationtempFilePaths}}">
+          <text class="background-uploader-add-icon">+</text>
+          <text class="background-uploader-add-des">点击拍摄/上传证明页</text>
+        </view>
+        <image src="{{photos.certificationtempFilePaths}}" wx:if="{{photos.certificationtempFilePaths}}" class="background-uploader-thumbnail" mode="aspectFit"></image>
+        <view class="first-remind-text-2" wx:if="{{photos.certificationtempFilePaths}}">点击修改证明页</view>
+        
+      </view>
+
+      <view class="background-uploader-block" bindtap="uploadImg" data-index="confirmation">
+        <view class="background-uploader-add" wx:if="{{!photos.confirmationtempFilePaths}}">
+          <text class="background-uploader-add-icon">+</text>
+          <text class="background-uploader-add-des">点击拍摄/上传确认页</text>
+        </view>
+        <image src="{{photos.confirmationtempFilePaths}}" wx:if="{{photos.confirmationtempFilePaths}}" class="background-uploader-thumbnail" mode="aspectFit"></image>
+        <view class="first-remind-text-2" wx:if="{{photos.confirmationtempFilePaths}}" >点击修改确认页</view>
+        
+      </view>
+
+
+    </view>
+  </view>
+
+  <view class="remind">
+    <view class="remind-title">注意事项</view>
+
+    <view class="remind-text">1. 完整版《老北方航空飞行学院背景调查文件》材料已于初面通过时发放，如有遗失，请自行前往老北方航空总部领取。</view>
+    <view class="remind-text">2. 本次仅需上传填写完成后的拍照版以供留存确认，纸质原材料请于终审考核时上交公司。</view>
+    <view class="remind-text">3. 如有更多问题，请联系招飞办寻求帮助。</view>
+  </view>
+
+  <view class="submit">
+    <button class="submit-button" bindtap="onSubmit">确认提交</button>
+  </view>
+
+  <view class="contact">
+    <button open-type="contact">声明材料遗失</button>
+    <button open-type="contact">联系招飞办</button>
+  </view>
+
+</scroll-view>
+
+<view class="page">
+    <mp-dialog title="确认提交背调资料" show="{{dialogShow}}" bindbuttontap="tapDialogButton" buttons="{{buttons}}">
+        <view>提交后无法再次修改，并请携带纸质原稿至终审现场。</view>
+    </mp-dialog>
+</view>

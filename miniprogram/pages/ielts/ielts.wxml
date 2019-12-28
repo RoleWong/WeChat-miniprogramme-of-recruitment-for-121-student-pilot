@@ -1,0 +1,74 @@
+<mp-toptips msg="{{error}}" type="error" show="{{error}}"></mp-toptips>
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+  <view class="page__hd">
+
+  </view>
+
+  <view class="page__bd">
+    <form bindsubmit="formSubmit" bindreset="formReset">
+      <mp-form id="form">
+
+        <mp-cells title="雅思成绩" footer=" ">
+          <mp-cell title="总分">
+            <slider name="total" min="5.5" max="9.0" step="0.5" value="7.0" activeColor="#d22222" show-value/>
+          </mp-cell>
+
+          <mp-cell title="阅读">
+            <slider name="reading" min="4.5" max="9.0" step="0.5" value="7.5" activeColor="#d22222" show-value/>
+          </mp-cell>
+          <mp-cell title="听力">
+            <slider name="listening" min="5.0" max="9.0" step="0.5" value="7.5" activeColor="#d22222" show-value/>
+          </mp-cell>
+          <mp-cell title="写作">
+            <slider name="writing" min="4.5" max="9.0" step="0.5" value="6.5" activeColor="#d22222" show-value/>
+          </mp-cell>
+          <mp-cell title="口语">
+            <slider name="speaking" min="5.0" max="9.0" step="0.5" value="6.0" activeColor="#d22222" show-value/>
+          </mp-cell>
+        </mp-cells>
+
+        <mp-cells title="成绩单信息"  footer="若上方自动判断有效期不足，请再次参加雅思考试，否则将影响后续招飞流程。请确保航校面试时雅思成绩仍处于有效期范围内。">
+          <mp-cell title="考试日期">
+            <picker value="{{testDate}}" start="2017-12-01" end="2019-12-15" name="testDate" mode="date" data-field="date" bindchange="bindTestDateChange" fields="day">
+              <view class="weui-input">{{testDate}}</view>
+            </picker>
+          </mp-cell>
+          <mp-cell title="成绩公布日期">
+            <picker value="{{scoreDate}}" start="2017-12-01" end="2019-12-28" name="scoreDate" mode="date" data-field="date" bindchange="bindScoreDateChange" fields="day">
+              <view class="weui-input">{{scoreDate}}</view>
+            </picker>
+          </mp-cell>
+          <mp-cell title="TRFN号">
+            <input class="weui-input" placeholder="成绩单右下角18位大写字母+数字" name="TRFN" />
+          </mp-cell>
+          <view class="weui-cell weui-cell_switch">
+            <view class="weui-cell__bd">雅思成绩有效期时间充足检测</view>
+            <view class="weui-cell__ft">
+              <switch name="valid" checked="{{scoreValid}}" disabled="true"/>
+            </view>
+          </view>
+        </mp-cells>
+
+
+
+      </mp-form>
+
+      <checkbox-group bindchange="bindAgreeChange">
+        <label class="weui-agree" for="weuiAgree">
+          <view class="weui-agree__text">
+            <checkbox class="weui-agree__checkbox" id="weuiAgree" value="agree" checked="{{isAgree}}" />
+            <view class="weui-agree__checkbox-icon">
+              <icon class="weui-agree__checkbox-icon-check" type="success_no_circle" size="9" wx:if="{{isAgree}}"></icon>
+            </view>
+            兹声明，以上雅思成绩信息属实，并愿意于终审考核时提供雅思成绩单原稿供面试官查阅。
+          </view>
+        </label>
+      </checkbox-group>
+
+      <view class="weui-btn-area">
+        <button class="weui-btn margin-bottom" type="primary" formType="submit">确定</button>
+      </view>
+
+    </form>
+  </view>
+</view>

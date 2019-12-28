@@ -4,7 +4,7 @@
 
   </view>
 
-  <view class="page__bd">
+  <view class="page__bd"> 
     <form bindsubmit="formSubmit" bindreset="formReset">
       <mp-form id="form">
 

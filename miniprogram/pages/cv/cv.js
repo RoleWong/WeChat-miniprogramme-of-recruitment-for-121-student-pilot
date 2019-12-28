@@ -1,12 +1,10 @@
-// miniprogram/pages/cv/cv.js
+var app = getApp();
+
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
     showTopTips: false,
-
+ 
     birthDate: '1996-01-01',
     graduatedDate: '2020-06',
     entryDate: '2016-09',
@@ -35,7 +33,7 @@ Page({
     var form = e.detail.value;
     if (form.name && form.englishScore && form.fatherName && form.fatherTel && form.fatherWork && form.fatherAge && form.height && form.idcard && form.major && form.mobile && form.motherAge && form.motherName && form.motherTel && form.motherWork && form.university && form.weight && this.data.identificationPhoto) {
     // if (true) {
-      if (this.data.isAgree) {
+      if (this.data.isAgree) { 
         var cloudPath = 'identificationPhoto/' + form.idcard + this.data.identificationPhoto[0].match(/\.[^.]+?$/)[0];
         wx.cloud.uploadFile({
           cloudPath: cloudPath,
@@ -55,8 +53,10 @@ Page({
                   duration: 2000,
                   icon: 'success'
                 });
+      
+                app.globalData.interviewStatus = "first"
                 wx.switchTab({
-                  url: '../orderfirstinterview/orderfirstinterview',
+                  url: "../../pages/orderInterview/orderInterview",
                 })
               },
               fail: console.error
@@ -163,23 +163,6 @@ Page({
     });
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function(options) {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow: function() {
     if (typeof this.getTabBar === 'function' &&
       this.getTabBar()) {
@@ -189,39 +172,4 @@ Page({
     }
 
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function() {
-
-  }
 })

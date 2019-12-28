@@ -1,0 +1,7 @@
+.margin-bottom{
+  margin-bottom: 100rpx;
+}
+
+page{
+  background-color: #fff;
+}

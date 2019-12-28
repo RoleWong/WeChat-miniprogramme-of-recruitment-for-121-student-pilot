@@ -45,7 +45,7 @@ page{
 
 .begin{
   position: fixed;
-  bottom: 225rpx;
+  bottom: 175rpx;
   width:100%;
   padding-right: 10%;
   padding-left: 10%;

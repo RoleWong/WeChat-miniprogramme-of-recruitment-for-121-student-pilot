@@ -1,0 +1,23 @@
+<scroll-view scroll-y="true">
+  <view class="iconArea">
+    <icon type="waiting" size="100" class="waiting" />
+    <view class="title">等待{{type}}结果中</view>
+  </view>
+
+  <view class="remindArea">
+    <view class="remind1">
+      <view class="remind1Head">{{type}}信息</view>
+      <view>时间：{{information.timeInfo.year}}年{{information.timeInfo.month}}月{{information.timeInfo.date}}日  {{information.timeInfo.hours}}:{{information.timeInfo.minutes}}</view>
+      <view>城市：{{information.city}}</view>
+      <view>地点：{{information.place}}</view>
+      <view>地址：{{information.address}}</view>
+    </view>
+
+    <view class="remind2">
+      <view class="remind2Head">参与须知</view>
+      <view wx:for="{{remindLine}}">
+        {{item}}
+      </view>
+    </view>
+  </view>
+</scroll-view>

@@ -8,10 +8,10 @@ Component({
         pagePath: "../../pages/index/index",
         text: "招飞介绍",
         iconPath: "../images/tabbar-icon/article.png",
-        selectedIconPath: "../images/tabbar-icon/article-active.png",
+        selectedIconPath: "../images/tabbar-icon/article-active.png", 
       },
       {
-        pagePath: "../../pages/apply/apply",
+        pagePath: "../../pages/apply/apply", 
         text: "申请流程",
         iconPath: "../images/tabbar-icon/apply.png",
         selectedIconPath: "../images/tabbar-icon/apply-active.png",
@@ -43,7 +43,7 @@ Component({
             console.log('得到的状态码', statusCode);
             if (statusCode == 666) {
               const url = "../../pages/apply/apply"
-              wx.switchTab({
+              wx.redirectTo({
                 url
               })
             }
@@ -54,15 +54,66 @@ Component({
               })
             }
             if (statusCode == 1) {
-              const url = "../../pages/orderInterview/orderInterview"
-              app.globalData.interviewStatus = "first"
+              const url = "../../pages/order/order"
+              app.globalData.orderStatus = "firstinterview"
               wx.switchTab({
                 url
               })
             }
             if (statusCode == 2) {
-              const url = "../../pages/orderInterview/orderInterview"
+              const url = "../../pages/waitingResult/waitingResult"
               wx.switchTab({
+                url
+              })
+            }
+            if (statusCode == 3) {
+              const url = "../../pages/order/order"
+              app.globalData.orderStatus = "firstphysicalcheck"
+              wx.switchTab({
+                url
+              })
+            }
+            if (statusCode == 4) {
+              const url = "../../pages/waitingResult/waitingResult"
+              wx.switchTab({
+                url
+              })
+            }
+            if (statusCode == 5) {
+              const url = "../../pages/order/order"
+              app.globalData.orderStatus = "secondinterview"
+              wx.switchTab({
+                url
+              })
+            }
+            if (statusCode == 6) {
+              const url = "../../pages/waitingResult/waitingResult"
+              wx.switchTab({
+                url
+              })
+            }
+            if (statusCode == 7) {
+              const url = "../../pages/order/order"
+              app.globalData.orderStatus = "secondphysicalcheck"
+              wx.switchTab({
+                url
+              })
+            }
+            if (statusCode == 8) {
+              const url = "../../pages/waitingResult/waitingResult"
+              wx.switchTab({
+                url
+              })
+            }
+            if (statusCode == 9) {
+              const url = "../../pages/uploadbackgroundinvestigate/uploadbackgroundinvestigate"
+              wx.redirectTo({
+                url
+              })
+            }
+            if (statusCode == 10) {
+              const url = "../../pages/ielts/ielts"
+              wx.redirectTo({
                 url
               })
             }
