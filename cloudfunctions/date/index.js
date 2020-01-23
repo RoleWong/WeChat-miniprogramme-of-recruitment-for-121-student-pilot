@@ -4,25 +4,42 @@ const cloud = require('wx-server-sdk')
 cloud.init()
 
 function ieltsValidate(event, context) {
-  var date = new Date();
-  var originalDate = (event.date).split('-')
-  var originalYear = Number(originalDate[0])
-  var originalMonth = Number(originalDate[1])
-  var originalDay = Number(originalDate[2])
-  var year = Number(date.getFullYear())
-  var month = Number(date.getMonth() + 1)
-  var day = Number(date.getDate())
+  let date = new Date();
+
+  var originalDateString = (event.date).split('-')
+  var originalYear = Number(originalDateString[0])
+  var originalMonth = Number(originalDateString[1])-1
+  var originalDay = Number(originalDateString[2])
+  // var year = Number(date.getFullYear()) 
+  // var month = Number(date.getMonth() + 1)
+  // var day = Number(date.getDate())
+  let originalDate = new Date()
+  originalDate.setFullYear(originalYear, originalMonth, originalDay)
+  console.log(date, originalDate)
+  date = Date.parse(date)
+  originalDate = Date.parse(originalDate)
+  console.log(date, originalDate)
+
+  const timeSpan = Math.abs(date - originalDate); 
+  const daySpan = Math.floor(timeSpan / (24 * 3600 * 1000)); 
+  console.log(daySpan)
+  return (daySpan < 640)
+
+
 
   //判断成绩公布时期是否还有最少两个月有效期
-  if (year - originalYear === 0) {
-    return true
-  } else {
-    if (month - originalMonth < 10 && year - originalYear === 1) {
-      return true
-    } else {
-      return false
-    }
-  }
+  //TODO：进入2020后该算法失效，需重做
+  // if (year - originalYear === 0) {
+  //   return true
+  // } else {
+  //   if (month - originalMonth < 10 && year - originalYear === 1) {
+  //     return true
+  //   } else {
+  //     return false
+  //   }
+  // }
+
+
 };
 
 

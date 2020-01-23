@@ -1,7 +1,13 @@
 <mp-toptips msg="{{error}}" type="error" show="{{error}}"></mp-toptips>
 <view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
   <view class="page__hd">
-
+    <!-- <view class="title">雅思成绩提交</view> -->
+    <view class="remind">
+      <view class="remind-title">雅思考试指引</view>
+      <view class="remind-text">1. 请在终审考核前取得合格的雅思成绩，并确保成绩仍处于有效期内。</view>
+      <view class="remind-text">2. 雅思成绩标准为总分不低于5.5，阅读写作小分不低于4.5，口语听力小分不低于5.0。</view>
+      <view class="remind-text">3. 若暂时不能提供合格的雅思成绩，可先跳过本步骤，终审考核时，直接持合格的雅思成绩单至现场手动录入。</view>
+    </view>
   </view>
 
   <view class="page__bd">
@@ -10,41 +16,40 @@
 
         <mp-cells title="雅思成绩" footer=" ">
           <mp-cell title="总分">
-            <slider name="total" min="5.5" max="9.0" step="0.5" value="7.0" activeColor="#d22222" show-value/>
+            <slider name="total" min="5.5" max="9.0" step="0.5" value="7.0"  show-value/>
           </mp-cell>
-
           <mp-cell title="阅读">
-            <slider name="reading" min="4.5" max="9.0" step="0.5" value="7.5" activeColor="#d22222" show-value/>
+            <slider name="reading" min="4.5" max="9.0" step="0.5" value="7.5" show-value/>
           </mp-cell>
           <mp-cell title="听力">
-            <slider name="listening" min="5.0" max="9.0" step="0.5" value="7.5" activeColor="#d22222" show-value/>
+            <slider name="listening" min="5.0" max="9.0" step="0.5" value="7.5" show-value/>
           </mp-cell>
           <mp-cell title="写作">
-            <slider name="writing" min="4.5" max="9.0" step="0.5" value="6.5" activeColor="#d22222" show-value/>
+            <slider name="writing" min="4.5" max="9.0" step="0.5" value="6.5" show-value/>
           </mp-cell>
           <mp-cell title="口语">
-            <slider name="speaking" min="5.0" max="9.0" step="0.5" value="6.0" activeColor="#d22222" show-value/>
+            <slider name="speaking" min="5.0" max="9.0" step="0.5" value="6.0" show-value/>
           </mp-cell>
         </mp-cells>
 
-        <mp-cells title="成绩单信息"  footer="若上方自动判断有效期不足，请再次参加雅思考试，否则将影响后续招飞流程。请确保航校面试时雅思成绩仍处于有效期范围内。">
+        <mp-cells title="成绩单信息" footer="若上方自动判断有效期不足，请再次参加雅思考试，否则将影响后续招飞流程。请确保航校面试时雅思成绩仍处于有效期范围内。">
           <mp-cell title="考试日期">
-            <picker value="{{testDate}}" start="2017-12-01" end="2019-12-15" name="testDate" mode="date" data-field="date" bindchange="bindTestDateChange" fields="day">
+            <picker value="{{testDate}}" start="2017-12-01" end="2020-04-15" name="testDate" mode="date" data-field="date" bindchange="bindTestDateChange" fields="day">
               <view class="weui-input">{{testDate}}</view>
             </picker>
           </mp-cell>
           <mp-cell title="成绩公布日期">
-            <picker value="{{scoreDate}}" start="2017-12-01" end="2019-12-28" name="scoreDate" mode="date" data-field="date" bindchange="bindScoreDateChange" fields="day">
+            <picker value="{{scoreDate}}" start="2017-12-01" end="2020-04-28" name="scoreDate" mode="date" data-field="date" bindchange="bindScoreDateChange" fields="day">
               <view class="weui-input">{{scoreDate}}</view>
             </picker>
           </mp-cell>
-          <mp-cell title="TRFN号">
+          <mp-cell title="TRFN">
             <input class="weui-input" placeholder="成绩单右下角18位大写字母+数字" name="TRFN" />
           </mp-cell>
           <view class="weui-cell weui-cell_switch">
             <view class="weui-cell__bd">雅思成绩有效期时间充足检测</view>
             <view class="weui-cell__ft">
-              <switch name="valid" checked="{{scoreValid}}" disabled="true"/>
+              <switch name="valid" checked="{{scoreValid}}" disabled="true" />
             </view>
           </view>
         </mp-cells>
@@ -66,9 +71,22 @@
       </checkbox-group>
 
       <view class="weui-btn-area">
-        <button class="weui-btn margin-bottom" type="primary" formType="submit">确定</button>
+        <button class="weui-btn margin-bottom" type="primary" formType="submit" >确定</button>
+        <button class="weui-btn bottom" type="default" bindtap="onJump">暂时不提交雅思</button>
       </view>
 
     </form>
   </view>
+</view>
+
+<view class="page">
+    <mp-dialog title="暂不提交雅思" show="{{jumpDialogShow}}" bindbuttontap="tapJumpDialogButton" buttons="{{jumpButtons}}">
+        <view>您可先跳过本步骤，终审考核时，请直接持合格的雅思成绩单至现场手动录入。</view>
+    </mp-dialog>
+</view>
+
+<view class="page">
+    <mp-dialog title="确认提交雅思" show="{{confirmDialogShow}}" bindbuttontap="tapConfirmDialogButton" buttons="{{confirmButtons}}">
+        <view>确认后无法在小程序中再次修改。</view>
+    </mp-dialog>
 </view>

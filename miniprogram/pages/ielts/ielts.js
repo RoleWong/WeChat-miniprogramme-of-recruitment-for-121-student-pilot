@@ -1,111 +1,151 @@
+var app = getApp()
+
 Page({
 
   data: {
     showTopTips: false,
     scoreDate: '2019-07-30',
     testDate: '2019-07-18',
-    scoreValid:true,
+    scoreValid: true,
     isAgree: false,
+    jumpDialogShow: false,
+    jumpButtons: [{
+      text: '取消'
+    }, { 
+      text: '跳过'
+    }],
+    confirmDialogShow: false,
+    confirmButtons: [{
+      text: '取消'
+    }, {
+      text: '提交'
+    }],
+    ielts: {}
   },
 
-  formSubmit: function (e) {
+  formSubmit: function(e) {
     var that = this;
     var form = e.detail.value;
     console.log(form)
 
-    // var that = this;
-    // var form = e.detail.value;
-    // if (form.name && form.englishScore && form.fatherName && form.fatherTel && form.fatherWork && form.fatherAge && form.height && form.idcard && form.major && form.mobile && form.motherAge && form.motherName && form.motherTel && form.motherWork && form.university && form.weight && this.data.identificationPhoto) {
-    //   // if (true) {
-    //   if (this.data.isAgree) {
-    //     var cloudPath = 'identificationPhoto/' + form.idcard + this.data.identificationPhoto[0].match(/\.[^.]+?$/)[0];
-    //     wx.cloud.uploadFile({
-    //       cloudPath: cloudPath,
-          // filePath: that.data.identificationPhoto[0],
-          // success: res => {
-          //   console.log(res.fileID);
-          //   wx.cloud.callFunction({
-          //     name: 'db',
-          //     data: {
-          //       type: 'writeCV',
-          //       form: form,
-          //       identificationPhoto: res.fileID
-          //     },
-          //     success: function (res) {
-          //       wx.showToast({
-          //         title: '招飞报名成功',
-          //         duration: 2000,
-          //         icon: 'success'
-          //       });
-
-          //       app.globalData.interviewStatus = "first"
-          //       wx.switchTab({
-          //         url: "../../pages/orderInterview/orderInterview",
-          //       })
-          //     },
-          //     fail: console.error
-          //   })
-    //       },
-    //       fail: err => {
-    //         console.log('错误', err)
-    //       }
-    //     });
-
-
-
-    //   } else {
-    //     wx.showToast({
-    //       title: '请阅读并确认应聘声明',
-    //       icon: 'none'
-    //     })
-    //   }
-    // } else {
-    //   wx.showToast({
-    //     title: '请确保所有项目（除工作经历）已填写！',
-    //     icon: 'none'
-    //   })
-    // }
-
+    if ((form.TRFN).length === 18) {
+      if (this.data.isAgree) {
+        this.setData({
+          confirmDialogShow: true,
+          ielts: e.detail.value
+        })
+      } else {
+        wx.showToast({
+          title: '请阅读并确认雅思成绩提交声明',
+          icon: 'none'
+        })
+      }
+    } else {
+      wx.showToast({
+        title: '请确保TRFN(Test Report Form Number)已正确输入！',
+        icon: 'none'
+      })
+    }
   },
 
-  formReset: function () {
-    console.log('form发生了reset事件')
+  tapConfirmDialogButton(e) {
+
+    var that = this
+    this.setData({
+      confirmDialogShow: false,
+    });
+
+    if (e.detail.index == '1') {
+      wx.cloud.callFunction({
+        name: 'db',
+        data: {
+          type: 'writeIELTS',
+          form: that.data.ielts
+        },
+        success: function(res) {
+          wx.showToast({
+            title: '雅思提交成功',
+            duration: 2000,
+            icon: 'success'
+          });
+
+          //跳转至终审考核页面
+          app.globalData.orderStatus = "finalinterview"
+          wx.switchTab({
+            url: "../../pages/order/order",
+          })
+        },
+        fail: console.error
+      })
+    }
   },
 
-  bindAgreeChange: function (e) {
+  onJump: function() {
+    this.setData({
+      jumpDialogShow: true
+    })
+  },
+
+  tapJumpDialogButton(e) {
+
+    var that = this
+    this.setData({
+      jumpDialogShow: false,
+    });
+
+    if (e.detail.index == '1') {
+      console.log('jump')
+      wx.cloud.callFunction({
+        name: 'db',
+        data: {
+          type: 'jumpIELTS',
+        },
+        success: function(res) {
+          //跳转至终审考核页面
+          app.globalData.orderStatus = "finalinterview"
+          wx.switchTab({
+            url: "../../pages/order/order",
+          })
+        },
+        fail: console.error
+      })
+    }
+  },
+
+  bindAgreeChange: function(e) {
     this.setData({
       isAgree: !!e.detail.value.length
     });
   },
 
-  bindTestDateChange: function (e) {
+  bindTestDateChange: function(e) {
     this.setData({
       testDate: e.detail.value,
     })
   },
 
-  bindScoreDateChange: function (e) {
+  bindScoreDateChange: function(e) {
     this.setData({
       scoreDate: e.detail.value,
     })
     this.validateTestDate(e.detail.value);
   },
 
-  validateTestDate: function (e) {
+  validateTestDate: function(e) {
     var that = this
     wx.cloud.callFunction({
       name: 'date',
-      data:{
-        type:'ieltsValidate',
-        date:e
+      data: {
+        type: 'ieltsValidate',
+        date: e
       },
-      success: function (res) {
+      success: function(res) {
         console.log(res.result)
-        if (res.result){
+        if (res.result) {
           that.setData({
-            scoreValid:true
+            scoreValid: true
           })
-        }else{
+        } else {
           that.setData({
             scoreValid: false
           })
@@ -113,16 +153,6 @@ Page({
       },
       fail: console.error
     })
-
-  },
-
-  onShow: function () {
-    if (typeof this.getTabBar === 'function' &&
-      this.getTabBar()) {
-      this.getTabBar().setData({
-        selected: 1
-      })
-    }
 
   },
 })

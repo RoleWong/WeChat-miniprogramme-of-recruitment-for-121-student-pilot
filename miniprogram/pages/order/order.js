@@ -1,4 +1,3 @@
-// miniprogram/pages/orderfirstinterview/orderfirstinterview.js
 Page({
 
   /**
@@ -7,7 +6,7 @@ Page({
   data: {
     interview: {},
     pickOne: '',
-    interviewStatus: '',
+    interviewStatus: '', 
     headRemind1: '',
     headRemind2: ''
 

@@ -16,7 +16,7 @@
   <view class="begin">
     <checkbox-group bindchange="ifAgreeCheckboxChange">
       <label class="contract">
-        <checkbox value="1" color="#d22222"/>我已阅读并同意《老北方航空2020上半年大学生飞行学员招聘简章》
+        <checkbox value="1" color="#a91f51"/>我已阅读并同意《老北方航空2020上半年大学生飞行学员招聘简章》
       </label>
     </checkbox-group>
     <button size="default" type="warn" disabled="{{beginApply}}" open-type="getUserInfo" bindgetuserinfo="onUserinfo" class="begin-button">立即发起申请流程</button>

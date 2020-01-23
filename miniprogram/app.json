@@ -1,13 +1,20 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/eyes/eyes",
     "pages/apply/apply",
     "pages/tools/tools",
     "pages/cv/cv",
     "pages/order/order",
     "pages/waitingResult/waitingResult",
     "pages/uploadbackgroundinvestigate/uploadbackgroundinvestigate",
-    "pages/ielts/ielts"
+    "pages/ielts/ielts",
+    "pages/pilotschoolorder/pilotschoolorder",
+    "pages/result/result",
+    "pages/cycle/cycle",
+    "pages/BMI/BMI",
+    "pages/body/body",
+    "pages/webview/webview"
   ],
   "window": {
     "backgroundColor": "#ffffff",
@@ -19,7 +26,7 @@
   "tabBar": {
     "custom": true,
     "color": "#7A7E83",
-    "selectedColor": "#d22222",
+    "selectedColor": "#a91f51",
     "borderStyle": "black",
     "backgroundColor": "#ffffff",
     "list": [
@@ -46,5 +53,19 @@
     ]
   },
   "usingComponents": {},
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "permission": {
+    "scope.userLocation": {
+      "desc": "本功能用于在地图中定位准确地点供参考。"
+    },
+    "scope.address":{
+      "desc":"本功能用于获取纸质材料（如OFFER）的邮寄地址。"
+    }
+  },
+  "plugins": {
+    "tencentvideo": {
+      "version": "1.3.7",
+      "provider": "wxa75efa648b60994b"
+    }
+  }
 }

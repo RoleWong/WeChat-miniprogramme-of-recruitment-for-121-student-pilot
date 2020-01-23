@@ -43,7 +43,7 @@ page {
   margin: 65rpx 145rpx 0rpx 145rpx;
   background: #fff;
   height: 235rpx;
-  border: 1rpx solid #d22222;
+  border: 1rpx solid #a91f51;
   overflow:hidden;
 }
 
@@ -55,7 +55,7 @@ page {
   justify-content: center;
   margin: 65rpx 145rpx 0rpx 145rpx;
   background: #fff;
-  color: #d22222;
+  color: #a91f51;
   font-weight: bold;
   height: 235rpx;
   border: 1rpx solid #d6d6d6;
@@ -97,16 +97,20 @@ page {
 }
 
 .contact {
-  width: 100%;
-  background-color: #fff;
-  margin-top: 20rpx;
-  margin-bottom: 200rpx;
+   width:100%;
+  padding-right: 27rpx;
+  padding-left: 27rpx;
+  box-sizing: border-box;
+  margin-top: 30rpx;
+  margin-bottom: 100rpx;
 }
 
 .submit{
-  width: 100%;
-  background-color: #dd2222;
-  margin-top: 20rpx;
+   width:100%;
+  padding-right: 27rpx;
+  padding-left: 27rpx;
+  box-sizing: border-box;
+  margin-top: 30rpx;
 }
 
 .submit-button {

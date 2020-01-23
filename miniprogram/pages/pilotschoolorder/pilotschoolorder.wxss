@@ -1,0 +1,110 @@
+/* miniprogram/pages/orderfirstinterview/orderfirstinterview.wxss */
+page{
+  height:100%;
+  width:100%;
+  background-color: #ffffff;
+}
+
+.headRemind1{
+  font-size: 40rpx;
+  font-weight: bold;
+  margin-bottom: 40rpx;
+  text-align: center;
+  color: #000000;
+  margin-top:40rpx;
+} 
+
+.headRemind2{
+  font-size: 30rpx;
+  margin-bottom: 40rpx;
+  text-align: center;
+  color: #353535;
+}
+
+.info{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fafafa;
+  padding-top: 30rpx;
+  padding-bottom: 50rpx;
+  margin-bottom: 70rpx;
+}
+.type{
+  position:absolute;
+  top:10rpx;
+  right:20rpx;
+  color: #f18969;
+  font-size: 30rpx;
+  font-weight: bold;
+  font-style:oblique;
+}
+
+.schoolInfo{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding-bottom: 20rpx;
+  padding-top: 20rpx;
+}
+.schoonInfo-name{
+  font-weight: bold;
+}
+.schoonInfo-address{
+  color: #353535;
+  font-size: 28rpx;
+  text-align: center;
+}
+
+.interviewInfo{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+}
+
+.interviewInfo_city{
+  display: flex;
+  justify-content: center;
+  font-size: 35rpx;
+  width: 100rpx;
+}
+
+.interviewInfo_citydetail{
+  width: 600rpx;
+  border-left: 1rpx solid #b2b2b2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 30rpx;
+}
+
+.date{
+  color: #353535;
+  font-size: 27rpx;
+}
+
+.address{
+  color: #888888;
+  font-size: 23rpx;
+}
+
+.interviewInfo_citychoose{
+  display: flex;
+  justify-content: center;
+  width:80rpx;
+}
+
+.submit{
+   width:100%;
+  padding-right: 20rpx;
+  padding-left: 20rpx;
+  box-sizing: border-box;
+  padding-bottom:200rpx;
+}
+
+.submit-button{
+  margin-bottom: 30rpx;
+}

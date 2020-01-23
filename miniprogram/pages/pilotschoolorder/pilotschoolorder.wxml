@@ -1,0 +1,32 @@
+<!--miniprogram/pages/orderfirstinterview/orderfirstinterview.wxml-->
+
+<view class="headRemind1">招飞流程即将结束</view>
+<view class="headRemind2">请选择一所有意愿学飞航校参与面试</view>
+
+<radio-group bindchange="radioChange">
+  <view class="session" wx:for="{{interview}}" wx:for-item="currentInterview" wx:key="interview">
+    <view class="info">
+    <view class="type">{{currentInterview.type}}学飞</view>
+      <view class="interviewInfo_citychoose">
+        <radio value="{{currentInterview._id}}">
+        </radio>
+      </view>
+      <view class="schoolInfo">
+        <view class="schoonInfo-name">{{currentInterview.schoolname}}</view>
+        <view class="schoonInfo-address">所在地：{{currentInterview.schooladdress}}</view>
+      </view>
+      <view class="interviewInfo">
+        <view class="interviewInfo_city">面试</view>
+        <view class="interviewInfo_citydetail">
+          <view class="date">时间：{{currentInterview.timeInfo.year}}年{{currentInterview.timeInfo.month}}月{{currentInterview.timeInfo.date}}日 {{currentInterview.timeInfo.hours}}:{{currentInterview.timeInfo.minutes}}开始</view>
+          <view class="address">地点：{{currentInterview.address}}{{currentInterview.place}}</view>
+        </view>
+
+      </view>
+    </view>
+  </view>
+
+</radio-group>
+<view class="submit">
+  <button class="submit-button" type="primary" bindtap="onSubmit">确认预约</button>
+</view>

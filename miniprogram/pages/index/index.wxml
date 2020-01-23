@@ -1,2 +1,103 @@
-<!--miniprogram/pages/index/index.wxml-->
-<!-- <mp-tabbar style="position:fixed;bottom:0;width:100%;left:0;right:0;" list="{{tabbarList}}" bindchange="tabChange" current="0"></mp-tabbar> -->
+<!-- <swiper indicator-dots="true" autoplay="true" interval="10000" duration="600" circular="true" previous-margin="3rpx" next-margin="3rpx">
+  <block wx:for="{{imgUrls}}">
+    <swiper-item>
+      <image src="{{item}}" class="slide-image" bindtap="onTapSwiper" data-index="{{index}}" />
+    </swiper-item>
+  </block>
+</swiper>
+
+<view class="fastEnter">
+  <view class="fastEnter-item">
+    <image src="../../images/instruction.png" mode="widthFix" class="fastEnter-item-image"></image>
+    <view class="fastEnter-item-text">招飞简章</view>
+  </view>
+  <view class="fastEnter-item">
+    <image src="../../images/instruction.png" mode="widthFix" class="fastEnter-item-image"></image>
+    <view class="fastEnter-item-text">招飞简章</view>
+  </view>
+  <view class="fastEnter-item">
+    <image src="../../images/instruction.png" mode="widthFix" class="fastEnter-item-image"></image>
+    <view class="fastEnter-item-text">招飞简章</view>
+  </view>
+  <view class="fastEnter-item">
+    <image src="../../images/instruction.png" mode="widthFix" class="fastEnter-item-image"></image>
+    <view class="fastEnter-item-text">招飞简章</view>
+  </view>
+</view> -->
+  <view class="warp">
+    <image src="cloud://pilot121-pztvw.7069-pilot121-pztvw-1300593603/img/index.jpg" class="warp-back"></image>
+    <view class="warp-content">
+      <view class="welcome">{{welcome}}，
+        <open-data type="userNickName" lang="zh_CN"></open-data>
+      </view>
+      <view class="welcome-small">欢迎参加老北方航空大毕改招飞</view>
+      <view class="slogan">
+        <image src="cloud://pilot121-pztvw.7069-pilot121-pztvw-1300593603/img/imageslogan.jpg" mode="widthFix" class="slogan-image" bindtap="onShowWeb" data-content="jianzhang"></image>
+      </view>
+      <view class="fastEnter">
+        <view class="fastEnter-item"  bindtap="onShowWeb" data-content="jianzhang">
+          <image src="../../images/instruction.png" mode="widthFix" class="fastEnter-item-image"></image>
+          <view class="fastEnter-item-text">简章</view>
+        </view>
+        <view class="fastEnter-item"  bindtap="onShowWeb" data-content="tijian">
+          <image src="../../images/body.png" mode="widthFix" class="fastEnter-item-image"></image>
+          <view class="fastEnter-item-text">体检</view>
+        </view>
+        <view class="fastEnter-item"  bindtap="onShowWeb" data-content="liucheng">
+          <image src="../../images/progress.png" mode="widthFix" class="fastEnter-item-image"></image>
+          <view class="fastEnter-item-text">流程</view>
+        </view>
+        <view class="fastEnter-item"  bindtap="onShowWeb" data-content="fenxiang">
+          <image src="../../images/share.png" mode="widthFix" class="fastEnter-item-image"></image>
+          <view class="fastEnter-item-text"  bindtap="onShowWeb" data-content="fenxiang">分享</view>
+        </view>
+      </view>
+      <view class="suggest">
+        建议开始招飞流程前，先浏览本页面所有内容
+      </view>
+      <view class="block">
+        <view class="block-row">
+          <view class="block-row-item"  bindtap="onShowWeb" data-content="jianzhang">
+            <image src="../../images/instruction.png" mode="widthFix" class="block-row-item-icon"></image>
+            招飞简章
+          </view>
+          <view class="block-row-item" bindtap="onShowWeb" data-content="tijian">
+            <image src="../../images/body.png" mode="widthFix" class="block-row-item-icon"></image>
+            体检标准
+          </view>
+        </view>
+        <view class="block-row">
+          <view class="block-row-item" bindtap="onShowWeb" data-content="liucheng">
+            <image src="../../images/progress.png" mode="widthFix" class="block-row-item-icon"></image>
+            招飞流程
+          </view>
+          <view class="block-row-item" bindtap="onShowWeb" data-content="fenxiang">
+            <image src="../../images/instruction.png" mode="widthFix" class="block-row-item-icon"></image>
+            学飞故事
+          </view>
+        </view>
+        <view class="block-row">
+          <view class="block-row-item" bindtap="onShowWeb" data-content="fenxiang">
+            <image src="../../images/share.png" mode="widthFix" class="block-row-item-icon"></image>
+            学员分享
+          </view>
+          <view class="block-row-item" bindtap="onShowWeb" data-content="tijiandui">
+            <image src="../../images/body.png" mode="widthFix" class="block-row-item-icon"></image>
+            体检队介绍
+          </view>
+        </view>
+      </view>
+
+      <view class="suggest">
+        大毕改招飞宣传视频
+      </view>
+
+      <view class="video">
+        <txv-video vid="x03051n1kz6" playerid="txv1"></txv-video>
+      </view>
+     <view class="suggest">
+        .
+      </view>
+
+    </view>
+  </view>

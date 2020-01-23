@@ -3,7 +3,7 @@ Component({
   data: {
     selected: 0,
     color: "#7A7E83",
-    selectedColor: "#d22222",
+    selectedColor: "#a91f51",
     list: [{
         pagePath: "../../pages/index/index",
         text: "招飞介绍",
@@ -43,7 +43,7 @@ Component({
             console.log('得到的状态码', statusCode);
             if (statusCode == 666) {
               const url = "../../pages/apply/apply"
-              wx.redirectTo({
+              wx.navigateTo({
                 url
               })
             }
@@ -107,13 +107,59 @@ Component({
             }
             if (statusCode == 9) {
               const url = "../../pages/uploadbackgroundinvestigate/uploadbackgroundinvestigate"
-              wx.redirectTo({
+              wx.navigateTo({
                 url
               })
             }
             if (statusCode == 10) {
               const url = "../../pages/ielts/ielts"
-              wx.redirectTo({
+              wx.navigateTo({
+                url
+              })
+            }
+            if (statusCode == 11) {
+              const url = "../../pages/order/order"
+              app.globalData.orderStatus = "finalinterview"
+              wx.switchTab({
+                url
+              })
+            }
+            if (statusCode == 12) {
+              const url = "../../pages/waitingResult/waitingResult"
+              wx.switchTab({
+                url
+              })
+            }
+            if (statusCode == 13) {
+              const url = "../../pages/pilotschoolorder/pilotschoolorder"
+              wx.navigateTo({
+                url
+              })
+            }
+            if (statusCode == 14) {
+              const url = "../../pages/waitingResult/waitingResult"
+              wx.switchTab({
+                url
+              })
+            }
+            if (statusCode == 15) {
+              const url = "../../pages/result/result"
+              app.globalData.type = "success"
+              wx.navigateTo({
+                url
+              })
+            }
+            if (statusCode == 16) {
+              const url = "../../pages/result/result"
+              app.globalData.type = "pass"
+              wx.navigateTo({
+                url
+              })
+            }
+            if (statusCode == 555) {
+              const url = "../../pages/result/result"
+              app.globalData.type = "failed"
+              wx.navigateTo({
                 url
               })
             }

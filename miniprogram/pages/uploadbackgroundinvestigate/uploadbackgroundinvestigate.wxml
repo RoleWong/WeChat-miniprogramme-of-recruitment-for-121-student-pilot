@@ -50,12 +50,11 @@
   </view>
 
   <view class="submit">
-    <button class="submit-button" bindtap="onSubmit">确认提交</button>
+    <button class="submit-button" bindtap="onSubmit" type="primary">确认提交</button>
   </view>
 
   <view class="contact">
-    <button open-type="contact">声明材料遗失</button>
-    <button open-type="contact">联系招飞办</button>
+    <button open-type="contact" type="warn">材料遗失联系</button>
   </view>
 
 </scroll-view>

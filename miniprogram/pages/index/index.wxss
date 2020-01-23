@@ -1,1 +1,134 @@
-/* miniprogram/pages/index/index.wxss */
+page {
+  width: 100%;
+  height: 100%;
+  /* background-image: url("cloud://pilot121-pztvw.7069-pilot121-pztvw-1300593603/img/index.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -moz-background-size: 100% 100%; */
+}
+
+/* 
+.slide-image {
+  width: 84%;
+  height: 260rpx;
+  margin: 10rpx 0rpx 20rpx 8%;
+  border-radius: 20rpx;
+} */
+
+.warp {
+  height: 100%;
+  position: relative;
+}
+
+.warp-back {
+  width: 100%;
+  height: 100%;
+}
+
+.warp-content {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0rpx;
+  left: 0rpx;
+}
+
+.welcome {
+  color: #fff;
+  font-size: 40rpx;
+  margin: 20rpx 0 0 50rpx;
+}
+
+.welcome-small {
+  color: #fff;
+  font-size: 23rpx;
+  margin: 10rpx 0 0 80rpx;
+}
+
+.slogan {
+  margin-top: 40rpx;
+  display: flex;
+  justify-content: center;
+}
+
+.slogan-image {
+  width: 90%;
+  box-shadow: 5px 5px 10px #b3b3b3;
+}
+
+
+.fastEnter {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 60rpx;
+  padding-bottom: 15rpx;
+  border-bottom: solid 1px #ececec;
+}
+
+.fastEnter-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  margin-right: 55rpx;
+  margin-left: 55rpx;
+}
+
+.fastEnter-item-image {
+  width: 40rpx;
+}
+
+.fastEnter-item-text {
+  font-size: 25rpx;
+  color: #353535;
+  margin-top: 10rpx;
+  font-weight: bold;
+}
+
+.suggest{
+  margin: 40rpx 0 40rpx 5%;
+  font-size:25rpx;
+  color:#888888;
+}
+
+.block{
+  background-color: #fdf6f9;
+  width: 90%;
+  margin-left:5%; 
+  display: flex;
+  flex-direction: column;
+}
+
+.block-row{
+  display: flex;
+  flex-direction: row;
+  height:100rpx;
+  align-content: center;
+  align-items: center;
+}
+
+.block-row-item{
+  display: flex;
+  flex-direction: row;
+  color: #aa1f52;
+  font-size: 29rpx;
+  font-weight: bold;
+  align-content: center;
+  align-items: center;
+  width: 50%;
+}
+
+.block-row-item-icon{
+  width: 30rpx;
+  margin-left: 40rpx;
+  margin-right: 20rpx;
+}
+
+.video{
+    width: 90%;
+  margin-left:5%; 
+  margin-bottom: 200rpx;
+}

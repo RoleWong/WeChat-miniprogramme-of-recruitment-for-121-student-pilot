@@ -1,0 +1,96 @@
+<scroll-view scroll-y="true">
+  <view class="header">
+    <view class="title">眼科项目自检提示</view>
+    <view class="remind">1. 屈光度（等效球镜）不应超过-4.50D～+3.00D范围；散光两轴相差不应大于2.00D；屈光参差不应大于2.50D。</view>
+    <view class="remind">2. 以下所有视力量度均为
+      <a style="color:#576b95" bindtap="onShowPicture" data-index="c">C字表（点击预览）</a>，自行测试时请注意。屈光情况建议前往眼镜店电脑验光，以散瞳后数据为准。</view>
+    <view class="remind">3. 本工具无需手动输入数据，请直接选择或拖动滑块即可。如果无法将滑块拖至您的度数值，则表示您的眼科数据不符合要求。</view>
+  </view>
+
+  <view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+    <view class="page__bd">
+      <form bindsubmit="formSubmit" bindreset="formReset">
+        <mp-form id="form">
+
+          <mp-cells title="左眼信息" footer="以上信息均为左眼数据。">
+            <mp-cell title="屈光情况">
+              <picker bindchange="bindLeftQuguangPickerChange" value="{{leftQuguangIndex}}" range="{{quguangArray}}">
+                <view class="weui-input">
+                  {{quguangArray[leftQuguangIndex]}}
+                </view>
+              </picker>
+            </mp-cell>
+            <mp-cell title="近视度数" wx:if="{{leftQuguangIndex==0}}">
+              <slider name="leftjinshi" min="25" max="450" step="25" value="200" show-value/>
+            </mp-cell>
+            <mp-cell title="远视度数" wx:if="{{leftQuguangIndex==1}}">
+              <slider name="leftyuanshi" min="25" max="300" step="25" value="150" show-value/>
+            </mp-cell>
+            <mp-cell title="散光度数" wx:if="{{leftQuguangIndex==0 || leftQuguangIndex==1}}">
+              <slider name="leftsanguang" min="0" max="250" step="25" value="100" show-value/>
+            </mp-cell>
+            <mp-cell title="能否辨认C字表1.0" wx:if="{{leftQuguangIndex==2}}">
+              <picker bindchange="bindLeftOnePickerChange" value="{{leftOneSeeIndex}}" range="{{isOrNo}}">
+                <view class="weui-input">
+                  {{isOrNo[leftOneSeeIndex]}}
+                </view>
+              </picker>
+            </mp-cell>
+
+          </mp-cells>
+
+          <mp-cells title="右眼信息" footer="以上信息均为右眼数据。">
+            <mp-cell title="屈光情况">
+              <picker bindchange="bindRightQuguangPickerChange" value="{{rightQuguangIndex}}" range="{{quguangArray}}">
+                <view class="weui-input">
+                  {{quguangArray[rightQuguangIndex]}}
+                </view>
+              </picker>
+            </mp-cell>
+            <mp-cell title="近视度数" wx:if="{{rightQuguangIndex==0}}">
+              <slider name="rightjinshi" min="25" max="450" step="25" value="200" show-value/>
+            </mp-cell>
+            <mp-cell title="远视度数" wx:if="{{rightQuguangIndex==1}}">
+              <slider name="rightyuanshi" min="25" max="300" step="25" value="150" show-value/>
+            </mp-cell>
+            <mp-cell title="散光度数" wx:if="{{rightQuguangIndex==0 || rightQuguangIndex==1}}">
+              <slider name="rightsanguang" min="0" max="250" step="25" value="100" show-value/>
+            </mp-cell>
+            <mp-cell title="能否辨认C字表1.0" wx:if="{{rightQuguangIndex==2}}">
+              <picker bindchange="bindRightOnePickerChange" value="{{rightOneSeeIndex}}" range="{{isOrNo}}">
+                <view class="weui-input">
+                  {{isOrNo[rightOneSeeIndex]}}
+                </view>
+              </picker>
+            </mp-cell>
+
+          </mp-cells>
+
+        </mp-form>
+
+        <view class="weui-btn-area">
+          <button class="weui-btn margin-bottom" type="primary" formType="submit">{{buttonText}}</button>
+        </view>
+      </form>
+    </view>
+  </view>
+
+  <view class="remindback" wx:if="{{pass}}">
+    <icon type="success" size="50" class="remind-icon"></icon>
+    <view class="remind-text">恭喜，您的视力数据符合要求。</view>
+  </view>
+
+  <view class="remindback" wx:if="{{failed}}">
+    <icon type="cancel" size="50" class="remind-icon" color="#a91f51"></icon>
+    <view class="remind-text">抱歉，您的视力暂时不符合要求。原因如下：</view>
+  </view>
+
+  <view wx:for="{{reasonListTotal}}" wx:if="{{failed}}">
+    <view class="reason">
+      <view class="reasonIndex">{{index+1}}. </view>
+      <view class="reasonContent">{{item}}</view>
+    </view>
+  </view>
+
+  <view class="bottom">.</view>
+</scroll-view>

@@ -40,3 +40,16 @@ page{
   justify-content: center;
   margin-bottom: 20rpx;
 }
+
+.location{
+  display: inline-block;
+}
+
+.locatioin-icon{
+  width:30rpx;
+  vertical-align:middle;
+}
+
+.locatioin-text{
+  vertical-align:middle;
+}

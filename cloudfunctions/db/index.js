@@ -44,7 +44,7 @@ async function register(event, context) {
         secondPhysicalCheckPass: "waiting",
         backgroundInvestigation: {},
         ielts: "waiting",
-        ieltsScore: 0,
+        ieltsScore: {},
         finalInterviewOrderId: 0,
         finalIntervIewPass: "waiting",
         pilotSchoolId: 0,
@@ -82,6 +82,28 @@ function getUserinfo(event, context) {
   }).get()
 };
 
+function getStatus(event, context) {
+  const wxContext = cloud.getWXContext()
+  return db.collection('status').where({
+    openid: wxContext.OPENID,
+  }).get()
+};
+
+function confirmOffer(event,context){
+  const wxContext = cloud.getWXContext()
+  db.collection('status').where({
+    openid: wxContext.OPENID,
+  })
+    .update({
+      data: {
+        offer: 'pass'
+      },
+      success: function (res) {
+        return "confirmSuccess!"
+      }
+    })
+}
+
 function getCV(event, context) {
   const wxContext = cloud.getWXContext()
   return db.collection('cv').where({
@@ -89,8 +111,27 @@ function getCV(event, context) {
   }).get()
 };
 
+async function getPilot(event,context){
+  // 【TODO】最好能实现按照顺序，自动屏蔽前序工作未完成时的场次
+  var allInterview = await db.collection('pilotschool').get();
+  console.log('全部面试场次', allInterview);
+
+  allInterview.data.forEach((item, index) => {
+    const date = new Date(item.date);
+    item.timeInfo = {
+      year: date.getFullYear(),
+      month: date.getMonth() + 1,
+      date: date.getDate(),
+      hours: date.getHours(),
+      minutes: fixZero(date.getMinutes())
+    };
+    // allInterview.data[index].date = date;
+  });
+  return allInterview;
+};
+
 async function getInterview(event, context) {
-  // 【有待完善】最好能实现按照顺序，自动屏蔽前序工作未完成时的场次
+  // 【TODO】最好能实现按照顺序，自动屏蔽前序工作未完成时的场次
   console.log(event.session)
   var allInterview = await db.collection(event.session).get();
   console.log('全部面试场次', allInterview);
@@ -154,6 +195,16 @@ async function confirmInterview(event, context) {
         },
       });
   };
+  if (event.session === "pilotschool") {
+    await db.collection('status').where({
+      openid: wxContext.OPENID,
+    })
+      .update({
+        data: {
+          pilotSchoolId: event.pick,
+        },
+      });
+  };
   if (event.session === "secondphysicalcheck") {
     await db.collection('status').where({
         openid: wxContext.OPENID,
@@ -204,8 +255,50 @@ function writeBackgroundInvestigation(event, context) {
   return '下次一定要注意变量类型哦~'
 }
 
+function writeIELTS(event,context){
+  console.log('开始录入IELTS', event)
+  const wxContext = cloud.getWXContext();
+  db.collection('status').where({
+    openid: wxContext.OPENID,
+  })
+    .update({
+      data: {
+        ielts: "pass",
+        ieltsScore: event.form,
+      },
+    });
+}
+
+function jumpIELTS(event,context){
+  console.log('开始跳过雅思', event)
+  const wxContext = cloud.getWXContext();
+  
+  db.collection('status').where({
+    openid: wxContext.OPENID,
+  })
+    .update({
+      data: { 
+        ielts: 'jump',
+      },
+    });
+}
+
+function writeAddress(event,context){
+  console.log('开始写入邮寄地址', event)
+  const wxContext = cloud.getWXContext();
+
+  db.collection('status').where({
+    openid: wxContext.OPENID,
+  })
+    .update({
+      data: {
+        offerAddress: event.address,
+      },
+    });
+}
+
 async function writeCV(event, context) {
-  console.log('开始录入面试简历1', event);
+  console.log('开始录入面试简历',event)
   const wxContext = cloud.getWXContext();
 
   var cv = {
@@ -232,9 +325,10 @@ async function writeCV(event, context) {
       })
       .update({
         data: {
-          cv: 'pass',
           ielts: "pass",
-          ieltsScore: event.form.englishScore,
+          ieltsScore: {
+            total: event.form.englishScore
+          },
         },
       });
 
@@ -367,7 +461,7 @@ async function getWaitingDetail(event, context) {
     return {
       information: information.data[0],
       remind: remind,
-      type: "领导面试"
+      type: "领导面试" 
     }
   }
 
@@ -406,6 +500,72 @@ async function getWaitingDetail(event, context) {
       information: information.data[0],
       remind: this.remind,
       type: "上站体检复检"
+    }
+  }
+
+  if (currentStatusCode === 14) {
+    //领导面试的等待结果页面数据
+    let status = await db.collection('status').where({
+      openid: wxContext.OPENID,
+    }).get();
+    var chooseSectionID = status.data[0].pilotSchoolId
+    let information = await db.collection('pilotschool').where({
+      _id: chooseSectionID
+    }).get();
+
+    console.log('information', information)
+
+    let remind = ["1. 面试持续一整天，请自行安排行程。", "2. 请携带身份证原件、雅思成绩单及一支黑色签字笔。", "3. 请着深色西装外套、西裤、白色衬衣及皮鞋。", "4. 本轮航校面试食宿及交通自理。","5. 本次选择将直接关系到学飞所在地及培养方式，如需修改意愿航校，请直接联系工作人员。"]
+
+    information.data.forEach((item, index) => {
+      const date = new Date(item.date);
+      item.timeInfo = {
+        year: date.getFullYear(),
+        month: date.getMonth() + 1,
+        date: date.getDate(),
+        hours: date.getHours(),
+        minutes: fixZero(date.getMinutes())
+      };
+      // information.data[index].date = date;
+    });
+    console.log('返回等待页面数据', information, remind)
+    return {
+      information: information.data[0],
+      remind: remind,
+      type: "航校面试"
+    }
+  }
+
+  if (currentStatusCode === 12) {
+    //领导面试的等待结果页面数据
+    let status = await db.collection('status').where({
+      openid: wxContext.OPENID,
+    }).get();
+    var chooseSectionID = status.data[0].finalInterviewOrderId
+    let information = await db.collection('finalinterview').where({
+      _id: chooseSectionID
+    }).get();
+
+    console.log('information', information)
+
+    let remind = ["1. 面试持续半天，请自行安排行程。", "2. 请携带身份证原件及一支黑色签字笔。", "3. 请着深色西装外套、西裤、白色衬衣及皮鞋。", "4. 本轮面试食宿及交通自理。","5. 请携带合格的雅思成绩单至现场提交。若还未系统中上传，请确保自己的雅思成绩可用。"]
+
+    information.data.forEach((item, index) => {
+      const date = new Date(item.date);
+      item.timeInfo = {
+        year: date.getFullYear(),
+        month: date.getMonth() + 1,
+        date: date.getDate(),
+        hours: date.getHours(),
+        minutes: fixZero(date.getMinutes())
+      };
+      // information.data[index].date = date;
+    });
+    console.log('返回等待页面数据', information, remind)
+    return {
+      information: information.data[0],
+      remind: remind,
+      type: "终审考核"
     }
   }
 }
@@ -449,10 +609,11 @@ async function getStatusCode(event, context) {
     if (currentApllicantStatus.data[0].secondPhysicalCheckPass === "pass") {
       statusCode = 9;
     }
-    if (currentApllicantStatus.data[0].backgroundInvestigation !== {}) {
+    if (Object.keys(currentApllicantStatus.data[0].backgroundInvestigation).length !== 0) { 
+      //利用ES6新特性Object.keys判断对象是否为空
       statusCode = 10;
     }
-    if (currentApllicantStatus.data[0].ielts === "pass") {
+    if (currentApllicantStatus.data[0].ielts === "pass" || currentApllicantStatus.data[0].ielts === "jump") {
       statusCode = 11;
     }
     if (currentApllicantStatus.data[0].finalInterviewOrderId != 0) {
@@ -469,6 +630,9 @@ async function getStatusCode(event, context) {
     }
     if (currentApllicantStatus.data[0].offer === "pass") {
       statusCode = 16;
+    }
+    if (currentApllicantStatus.data[0].firstintervIewPass === "failed" || currentApllicantStatus.data[0].firstPhysicalCheckPass === "failed" || currentApllicantStatus.data[0].secondintervIewPass === "failed" || currentApllicantStatus.data[0].secondPhysicalCheckPass === "failed" || currentApllicantStatus.data[0].finalIntervIewPass === "failed" || currentApllicantStatus.data[0].pilotSchoolPass === "failed") {
+      statusCode = 555;
     }
 
     return statusCode;
@@ -510,6 +674,25 @@ exports.main = async(event, context) => {
   }
   if (event.type === 'writeBackgroundInvestigation') {
     return writeBackgroundInvestigation(event, context)
+  }
+  if (event.type === 'writeIELTS'){
+    return writeIELTS(event,context)
+  }
+  if (event.type === 'jumpIELTS'){
+    return jumpIELTS(event,context)
+  }
+  if (event.type ==='getPilot'){
+    return getPilot(event,context)
+  }
+  if (event.type ==="confirmOffer"){
+    return confirmOffer(event,context)
+  }
+  if (event.type === "writeAddress"){
+    return writeAddress(event,context)
+  }
+  if (event.type === "getStatus")
+  {
+    return getStatus(event,context)
   }
 
 }

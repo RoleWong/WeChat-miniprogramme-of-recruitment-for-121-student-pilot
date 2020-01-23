@@ -8,9 +8,11 @@
     <view class="remind1">
       <view class="remind1Head">{{type}}信息</view>
       <view>时间：{{information.timeInfo.year}}年{{information.timeInfo.month}}月{{information.timeInfo.date}}日  {{information.timeInfo.hours}}:{{information.timeInfo.minutes}}</view>
-      <view>城市：{{information.city}}</view>
-      <view>地点：{{information.place}}</view>
+      <view wx:if="{{information.city}}">城市：{{information.city}}</view>
+      <view wx:if="{{information.schoolname}}">航校：{{information.schoolname}}</view>
+      <view wx:if="{{information.type}}">类型：{{information.type}}学飞</view>
       <view>地址：{{information.address}}</view>
+      <view bindtap="onOpenMap" class="location">地点：<image class="locatioin-icon" src="../../images/location.png" mode="widthFix" /><text style="color:#576b95" class="locatioin-text">{{information.place}}</text></view>
     </view>
 
     <view class="remind2">

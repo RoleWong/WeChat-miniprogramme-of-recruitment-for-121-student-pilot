@@ -12,12 +12,11 @@
     </view>
     <view class="choose">
       <radio value="{{currentInterview._id}}">
-      </radio>
+      </radio> 
     </view>
   </view>
 
 </radio-group>
 <view class="submit">
-  <button class="submit-button" type="warn" bindtap="onSubmit">确认预约</button>
-  <button class="submit-button" type="default">修改报名表（还未实现）</button>
+  <button class="submit-button" type="primary" bindtap="onSubmit">确认预约</button>
 </view>

@@ -1,3 +1,78 @@
-<!--miniprogram/pages/tools/tools.wxml-->
-<text>miniprogram/pages/tools/tools.wxml</text>
+<scroll-view scroll-y="true">
+  <view class="header">
+    <view class="title">身体自检工具包</view>
+    <view class="remind">强烈建议开始流程前，先完成所有身体自检项目，以提高通过率，避免浪费时间。</view>
+  </view>
 
+  <view class="content">
+    <view class="content-box" bindtap="onChange" data-index="eyes">
+      <view class="content-box-image">
+        <image src="../../images/eye.png" mode="widthFix" class="content-box-image-image"></image>
+      </view>
+      <view class="content-box-text">
+        <view class="content-box-title">眼及其附属器</view>
+        <view class="content-box-interpretation">屈光度、裸眼视力、散光度、屈光参差等</view>
+      </view>
+      <view class="content-box-image">
+        <image src="../../images/right.png" mode="widthFix" class="content-box-right-right"></image>
+      </view>
+    </view>
+
+    <view class="content-box" bindtap="onChange" data-index="cycle">
+      <view class="content-box-image">
+        <image src="../../images/cycle.png" mode="widthFix" class="content-box-image-image"></image>
+      </view>
+      <view class="content-box-text">
+        <view class="content-box-title">循环系统</view>
+        <view class="content-box-interpretation">收缩压、舒张压、心率等</view>
+      </view>
+      <view class="content-box-image">
+        <image src="../../images/right.png" mode="widthFix" class="content-box-right-right"></image>
+      </view>
+    </view>
+
+    <view class="content-box" bindtap="onChange" data-index="BMI">
+      <view class="content-box-image">
+        <image src="../../images/BMI.png" mode="widthFix" class="content-box-image-image"></image>
+      </view>
+      <view class="content-box-text">
+        <view class="content-box-title">外科</view>
+        <view class="content-box-interpretation">BMI、身体形态等</view>
+      </view>
+      <view class="content-box-image">
+        <image src="../../images/right.png" mode="widthFix" class="content-box-right-right"></image>
+      </view>
+    </view>
+
+    <view class="content-box" bindtap="onChange" data-index="body">
+      <view class="content-box-image">
+        <image src="../../images/bodytools.png" mode="widthFix" class="content-box-image-image"></image>
+      </view>
+      <view class="content-box-text">
+        <view class="content-box-title">身体情况</view>
+        <view class="content-box-interpretation">过往病史、家族遗传、手术情况等</view>
+      </view>
+      <view class="content-box-image">
+        <image src="../../images/right.png" mode="widthFix" class="content-box-right-right"></image>
+      </view>
+    </view>
+  </view>
+
+  <view class="footer">
+    <view class="footer-icon">
+      <icon type="info" size="40"></icon>
+    </view>
+    <view class="footer-remind">
+      <view class="footer-remind-text">本套工具包根据中国民用航空局
+        <a style="color:#576b95;">《民用航空招收飞行学生体检鉴定规范（MH/T 7013-2017）》</a>制作。由于自检不能完全覆盖所有项目且量度方式不一，通过全部的自检不代表能够通过正式招飞体检。</view>
+    </view>
+  </view>
+
+  <view class="statement">
+    <view>本区域图标大部分来自iconfont平台</view>
+    <view>
+      <image src="../../images/tencent.png" mode="widthFix"></image><text class=""> | 腾讯云云开发提供技术支持</text>
+    </view>
+
+  </view>
+</scroll-view>

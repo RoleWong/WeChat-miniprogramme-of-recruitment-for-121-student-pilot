@@ -12,7 +12,7 @@ page{
   text-align: center;
   color: #000000;
   margin-top:40rpx;
-}
+} 
 
 .headRemind2{
   font-size: 30rpx;
