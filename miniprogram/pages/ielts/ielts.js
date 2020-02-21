@@ -20,7 +20,8 @@ Page({
     }, {
       text: '提交'
     }],
-    ielts: {}
+    ielts: {},
+    error: ''
   },
 
   formSubmit: function(e) {
@@ -35,15 +36,15 @@ Page({
           ielts: e.detail.value
         })
       } else {
-        wx.showToast({
-          title: '请阅读并确认雅思成绩提交声明',
-          icon: 'none'
+      
+        that.setData({
+          error:'请阅读并确认雅思成绩提交声明'
         })
       }
     } else {
-      wx.showToast({
-        title: '请确保TRFN(Test Report Form Number)已正确输入！',
-        icon: 'none'
+  
+      that.setData({
+        error: '请确保TRFN(Test Report Form Number)已正确输入！'
       })
     }
   },

@@ -14,7 +14,7 @@ Page({
     region: ['广东省', '深圳市', '南山区'],
     customItem: '全部',
 
-    politicalStatus: ['群众', '中共党员', '中共预备党员', '共青团员', '民革党员', '民盟盟员', '民建会员', '民进会员', '农工党党员', '致公党党员', '九三学社社员', '台盟盟员', '无党派人士', ],
+    politicalStatus: ['群众', '中共党员', '中共预备党员', '共青团员', '民革党员', '民盟盟员', '民建会员', '民进会员', '农工党党员', '致公党党员', '九三学社社员', '台盟盟员', '无党派人士'],
     politicalStatusIndex: 0,
 
     education: ['大学本科', '硕士研究生', '博士研究生'],
@@ -25,7 +25,8 @@ Page({
 
     isAgree: false,
     identificationPhoto: '',
-    uploadButton: '上传证件照'
+    uploadButton: '上传证件照',
+    error:''
   },
 
   formSubmit: function(e) {
@@ -54,9 +55,9 @@ Page({
                   icon: 'success'
                 });
       
-                app.globalData.interviewStatus = "first"
+                app.globalData.orderStatus = "firstinterview"
                 wx.switchTab({
-                  url: "../../pages/orderInterview/orderInterview",
+                  url: "../../pages/order/order",
                 })
               },
               fail: console.error
@@ -66,19 +67,22 @@ Page({
             console.log('错误', err)
           }
         });
-
-
-
       } else {
-        wx.showToast({
-          title: '请阅读并确认应聘声明',
-          icon: 'none'
+        // wx.showToast({
+        //   title: '请阅读并确认应聘声明',
+        //   icon: 'none'
+        // })
+        that.setData({
+          error:'请阅读并确认应聘声明'
         })
       }
     } else {
-      wx.showToast({
-        title: '请确保所有项目（除工作经历）已填写！',
-        icon: 'none'
+      // wx.showToast({
+      //   title: '请确保所有项目（除工作经历）已填写！',
+      //   icon: 'none'
+      // })
+      that.setData({
+        error: '请确保所有项目（除工作/实习经历）已填写！'
       })
     }
 
@@ -108,6 +112,15 @@ Page({
   bindBirthDateChange: function(e) {
     this.setData({
       birthDate: e.detail.value,
+    })
+  },
+
+  onPreviewImage(e) {
+    console.log('preview', e.currentTarget.dataset.src)
+    let current = e.currentTarget.dataset.src
+    wx.previewImage({
+      current,
+      urls: [current],
     })
   },
 

@@ -1,7 +1,7 @@
 <scroll-view scroll-y="true">
   <view class="header">
-    <view class="title">身体自检工具包</view>
-    <view class="remind">强烈建议开始流程前，先完成所有身体自检项目，以提高通过率，避免浪费时间。</view>
+    <view class="title"><image src="../../images/leftright.png" mode="widthFix"/><text>身体自检</text> <image src="../../images/leftright.png" mode="widthFix"/></view>
+    <!-- <view class="remind">强烈建议开始流程前，先完成所有身体自检项目，以提高通过率，避免浪费时间。</view> -->
   </view>
 
   <view class="content">
@@ -37,7 +37,7 @@
       </view>
       <view class="content-box-text">
         <view class="content-box-title">外科</view>
-        <view class="content-box-interpretation">BMI、身体形态等</view>
+        <view class="content-box-interpretation">BMI、外科病症等</view>
       </view>
       <view class="content-box-image">
         <image src="../../images/right.png" mode="widthFix" class="content-box-right-right"></image>
@@ -49,8 +49,42 @@
         <image src="../../images/bodytools.png" mode="widthFix" class="content-box-image-image"></image>
       </view>
       <view class="content-box-text">
-        <view class="content-box-title">身体情况</view>
+        <view class="content-box-title">身体综合</view>
         <view class="content-box-interpretation">过往病史、家族遗传、手术情况等</view>
+      </view>
+      <view class="content-box-image">
+        <image src="../../images/right.png" mode="widthFix" class="content-box-right-right"></image>
+      </view>
+    </view>
+
+    <view class="header">
+    <view class="title"><image src="../../images/leftright.png" mode="widthFix"/><text>疫情专区</text> <image src="../../images/leftright.png" mode="widthFix"/></view>
+  </view>
+
+    <view class="content-box" bindtap="onChangeToYiqin">
+      <view class="content-box-image">
+        <image src="../../images/fighting.png" mode="widthFix" class="content-box-image-image"></image>
+      </view>
+      <view class="content-box-text">
+        <view class="content-box-title">抗击疫情工具箱</view>
+        <view class="content-box-interpretation">天佑武汉，祝福祖国！</view>
+      </view>
+      <view class="content-box-image">
+        <image src="../../images/right.png" mode="widthFix" class="content-box-right-right"></image>
+      </view>
+    </view>
+
+    <view class="header" wx:if="{{adminShow}}">
+    <view class="title"><image src="../../images/leftright.png" mode="widthFix"/><text>员工专用</text> <image src="../../images/leftright.png" mode="widthFix"/></view>
+  </view>
+
+     <view class="content-box" bindtap="onChange" data-index="staff" wx:if="{{adminShow}}">
+      <view class="content-box-image">
+        <image src="{{avatar}}" mode="widthFix" class="content-box-image-avatar"></image>
+      </view>
+      <view class="content-box-text">
+        <view class="content-box-title">招飞管理系统</view>
+        <view class="content-box-interpretation">以{{id}}({{name}})身份进入</view>
       </view>
       <view class="content-box-image">
         <image src="../../images/right.png" mode="widthFix" class="content-box-right-right"></image>

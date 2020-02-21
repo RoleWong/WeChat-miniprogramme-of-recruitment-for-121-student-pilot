@@ -1,0 +1,151 @@
+<view class='mask' wx:if="{{maskShow}}"></view>
+<view class="info">
+  <view>
+    <image src="{{staffInfo.avatar}}" mode="widthFix" class="info-avatar"></image>
+  </view>
+  <view class="info-name">{{staffInfo.id}}({{staffInfo.name}})</view>
+  <view class="info-department">{{staffInfo.department}}{{staffInfo.occupation}}</view>
+</view>
+
+<view class="amount">
+  <view class="item">
+    <view class="item-number">{{amount.interview}}</view>
+    <view class="item-text">面试待结论</view>
+  </view>
+  <view class="item">
+    <view class="item-number">{{amount.pyhicalcheck}}</view>
+    <view class="item-text">体检待结论</view>
+  </view>
+  <view class="item"> 
+    <view class="item-number">{{amount.pilotschool}}</view>
+    <view class="item-text">待航校结论</view>
+  </view>
+</view>
+<view class="area">
+  <view class="area-remind">管理场次安排</view>
+  <view class="content-box" bindtap="onChange" data-index="sessionManage" data-type="interview">
+    <view class="content-box-image">
+      <image src="../../images/admin.png" mode="widthFix" class="content-box-image-image"></image>
+    </view>
+    <view class="content-box-text">
+      <view class="content-box-title">公司面试场次</view>
+      <!-- <view class="content-box-interpretation">初面、领导面及终审考核</view> -->
+    </view>
+    <view class="content-box-image">
+      <image src="../../images/right.png" mode="widthFix" class="content-box-right-right"></image>
+    </view>
+  </view>
+
+  <view class="content-box" bindtap="onChange" data-index="sessionManage" data-type="physicalcheck">
+    <view class="content-box-image">
+      <image src="../../images/admin.png" mode="widthFix" class="content-box-image-image"></image>
+    </view>
+    <view class="content-box-text">
+      <view class="content-box-title">上站体检场次</view>
+      <!-- <view class="content-box-interpretation">上站初检及上站复检</view> -->
+    </view>
+    <view class="content-box-image">
+      <image src="../../images/right.png" mode="widthFix" class="content-box-right-right"></image>
+    </view>
+  </view>
+
+  <view class="content-box" bindtap="onChange" data-index="sessionManage" data-type="pilotschool">
+    <view class="content-box-image">
+      <image src="../../images/admin.png" mode="widthFix" class="content-box-image-image"></image>
+    </view>
+    <view class="content-box-text">
+      <view class="content-box-title">航校面试场次</view>
+      <!-- <view class="content-box-interpretation">流程最后一步</view> -->
+    </view>
+    <view class="content-box-image">
+      <image src="../../images/right.png" mode="widthFix" class="content-box-right-right"></image>
+    </view>
+  </view>
+</view>
+
+<view class="area">
+  <view class="area-remind">管理学生结论</view>
+  <view class="content-box" bindtap="onChange" data-index="studentManage" data-type="interview">
+    <view class="content-box-image">
+      <image src="../../images/admin.png" mode="widthFix" class="content-box-image-image"></image>
+    </view>
+    <view class="content-box-text">
+      <view class="content-box-title">待通过面试候选人</view>
+      <!-- <view class="content-box-interpretation">为面试完成学生选择通过与否</view> -->
+    </view>
+    <view class="content-box-image">
+      <image src="../../images/right.png" mode="widthFix" class="content-box-right-right"></image>
+    </view>
+  </view>
+
+  <view class="content-box" bindtap="onChange"  data-index="studentManage" data-type="physicalcheck">
+    <view class="content-box-image">
+      <image src="../../images/admin.png" mode="widthFix" class="content-box-image-image"></image>
+    </view>
+    <view class="content-box-text">
+      <view class="content-box-title">待通过体检候选人</view>
+      <!-- <view class="content-box-interpretation">为体检完成学生选择通过与否</view> -->
+    </view>
+    <view class="content-box-image">
+      <image src="../../images/right.png" mode="widthFix" class="content-box-right-right"></image>
+    </view>
+  </view>
+
+  <view class="content-box" bindtap="onChange"  data-index="studentManage" data-type="pilotschool">
+    <view class="content-box-image">
+      <image src="../../images/admin.png" mode="widthFix" class="content-box-image-image"></image>
+    </view>
+    <view class="content-box-text">
+      <view class="content-box-title">待通过航校面试候选人</view>
+      <!-- <view class="content-box-interpretation">为航校面试完成学生选择通过与否，最后一步</view> -->
+    </view>
+    <view class="content-box-image">
+      <image src="../../images/right.png" mode="widthFix" class="content-box-right-right"></image>
+    </view>
+  </view>
+
+  <view class="content-box" bindtap="onChange"  data-index="studentManage" data-type="offer">
+    <view class="content-box-image">
+      <image src="../../images/admin.png" mode="widthFix" class="content-box-image-image"></image>
+    </view>
+    <view class="content-box-text">
+      <view class="content-box-title">已确认OFFER候选人</view>
+      <!-- <view class="content-box-interpretation">为航校面试完成学生选择通过与否，最后一步</view> -->
+    </view>
+    <view class="content-box-image">
+      <image src="../../images/right.png" mode="widthFix" class="content-box-right-right"></image>
+    </view>
+  </view>
+
+  <view class="content-box" bindtap="onChange"  data-index="studentManage" data-type="failed">
+    <view class="content-box-image">
+      <image src="../../images/admin.png" mode="widthFix" class="content-box-image-image"></image>
+    </view>
+    <view class="content-box-text">
+      <view class="content-box-title">流程被放弃候选人</view>
+      <!-- <view class="content-box-interpretation">为航校面试完成学生选择通过与否，最后一步</view> -->
+    </view>
+    <view class="content-box-image">
+      <image src="../../images/right.png" mode="widthFix" class="content-box-right-right"></image>
+    </view>
+  </view>
+</view>
+
+
+<view class="area">
+  <view class="area-remind">系统管理</view>
+  
+   <view class="content-box" bindtap="onBack">
+    <view class="content-box-image">
+      <image src="../../images/admin.png" mode="widthFix" class="content-box-image-image"></image>
+    </view>
+    <view class="content-box-text">
+      <view class="content-box-title">返回候选人端</view>
+      <!-- <view class="content-box-interpretation">为面试完成学生选择通过与否</view> -->
+    </view>
+    <view class="content-box-image">
+      <image src="../../images/right.png" mode="widthFix" class="content-box-right-right"></image>
+    </view>
+  </view>
+
+</view>

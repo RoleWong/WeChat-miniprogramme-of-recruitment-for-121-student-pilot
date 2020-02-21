@@ -97,7 +97,7 @@ Page({
               filePath: filePath,
             }).then(res => {
 
-              //利用闭包原理，for循环中定义一个函数，并立即传递index进去执行，而不是把变量直接绑定，因为这只会绑定变量index，而非index的值。
+              //利用闭包原理，for循环中定义一个函数，并立即传递index进去执行，而不是把变量直接绑定，因为这只会绑定变量index，而非index的值。此外，定义index是如果用let，则不会涉及此问题。
               function write(i) {
                 tempUploadPhotos[i] = res.fileID
               }

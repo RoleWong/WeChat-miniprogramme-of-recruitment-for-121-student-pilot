@@ -3,7 +3,8 @@
 <button class="btn_pass" wx:if="{{type === 'success'}}" bindtap="onSubmit">确认接受OFFER</button>
 <button class="btn_failed" wx:if="{{type === 'failed'}}" bindtap="">老北方航空地勤招聘</button>
 <button class="btn_pass" wx:if="{{type === 'pass'}}" bindtap="">您已成功确认OFFER</button>
-<button class="btn_pass second" bindtap="onShowChooseAddress" wx:if="{{submitShow}}">提交邮寄地址</button>
+
+<button class="btn_pass second" bindtap="onShowChooseAddress">纸质材料邮寄地址</button>
 
 <view class="page">
     <mp-dialog title="确认接受OFFER" show="{{dialogShow}}" bindbuttontap="tapDialogButton" buttons="{{buttons}}">

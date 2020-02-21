@@ -1,2 +1,51 @@
-<!--miniprogram/pages/body/body.wxml-->
-<text>miniprogram/pages/body/body.wxml</text>
+<scroll-view scroll-y="true">
+  <view class="header">
+    <view class="title">民航招飞体检报名自检</view>
+    <view class="remind">本测试源于<a style="color:#576b95" bindtap="onShowPicture" data-index="tijian">中国民航局“民用航空人员招飞体检鉴定信息平台”（点击预览）</a>，您可在此处尝试作答，判断自己是否符合。</view>
+  </view>
+
+  <view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+    <view class="page__bd">
+      <form bindsubmit="formSubmit" bindreset="formReset">
+        <mp-form id="form">
+
+          <mp-cells title="身体状况（若有所述情况，请勾选）">
+            <mp-checkbox-group prop="checkbox" multi="{{true}}" bindchange="checkboxChange_body">
+              <mp-checkbox wx:for="{{checkboxItems_body}}" wx:key="value" label="{{item.name}}" value="{{item.value}}" checked="{{item.checked}}"></mp-checkbox>
+            </mp-checkbox-group>
+          </mp-cells>
+
+          <mp-cells title="家族史（若有所述情况，请勾选）">
+            <mp-checkbox-group prop="checkbox" multi="{{true}}" bindchange="checkboxChange_family">
+              <mp-checkbox wx:for="{{checkboxItems_family}}" wx:key="value" label="{{item.name}}" value="{{item.value}}" checked="{{item.checked}}"></mp-checkbox>
+            </mp-checkbox-group>
+          </mp-cells>
+
+        </mp-form>
+
+        <view class="weui-btn-area">
+          <button class="weui-btn margin-bottom" type="primary" formType="submit">{{buttonText}}</button>
+        </view>
+      </form>
+    </view>
+  </view>
+
+  <view class="remindback" wx:if="{{pass}}">
+    <icon type="success" size="50" class="remind-icon"></icon>
+    <view class="remind-text">恭喜，您已通过模拟招飞体检申请自检。</view>
+  </view>
+
+  <view class="remindback" wx:if="{{failed}}">
+    <icon type="info" size="50" class="remind-icon" color="#a91f51"></icon>
+    <view class="remind-text">根据您的选择，给出如下建议：</view>
+  </view>
+
+  <view wx:for="{{reasonListTotal}}" wx:if="{{failed}}">
+    <view class="reason">
+      <view class="reasonIndex">{{index+1}}. </view>
+      <view class="reasonContent">{{item}}</view>
+    </view>
+  </view>
+
+  <view class="bottom">.</view>
+</scroll-view>

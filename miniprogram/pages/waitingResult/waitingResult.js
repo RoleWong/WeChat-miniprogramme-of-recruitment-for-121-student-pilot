@@ -34,13 +34,16 @@ Page({
         selected: 1
       })
     }
+    this.onLoad()
   },
 
   onOpenMap() {
     var that = this;
-    let latitude = that.data.information.location.latitude
-    let longitude = that.data.information.location.longitude
+    //打开地图必须用浮点型的经纬度，后台系统录入或新增时，会将经纬度变成string
+    let latitude = parseFloat(that.data.information.location.latitude)
+    let longitude = parseFloat(that.data.information.location.longitude)
     let name = that.data.information.location.name
+    console.log('openmap', latitude)
     wx.openLocation({
       latitude,
       longitude,

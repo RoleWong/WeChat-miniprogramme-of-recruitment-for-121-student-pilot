@@ -1,0 +1,287 @@
+<scroll-view scroll-y="true">
+  <image src="{{sliderPicture}}" mode="widthFix" class="header"></image>
+  <view class="numberBox">
+    <view class="item">
+      <view class="item-number">{{amount.offer}}</view>
+      <view class="item-text">接受offer人数</view>
+    </view>
+    <view class="item">
+      <view class="item-number">{{amount.failed}}</view>
+      <view class="item-text">流程放弃人数</view>
+    </view>
+    <view class="item">
+      <view class="item-number">{{amount.process}}</view>
+      <view class="item-text">流程中人数</view>
+    </view>
+  </view>
+
+  <view class="control">
+    <image mode="widthFix" class="control-item-left" src="cloud://pilot121-pztvw.7069-pilot121-pztvw-1300593603/img/findofferbutton.jpg" bindtap="onShowMask"bindtap="onChange"  data-index="studentManage" data-type="offer"></image>
+    <image mode="widthFix" class="control-item-right" src="cloud://pilot121-pztvw.7069-pilot121-pztvw-1300593603/img/findfailedButton.jpg" bindtap="tapApplyNewSession"bindtap="onChange"  data-index="studentManage" data-type="failed"></image>
+  </view>
+
+  <view class="content">
+    <view class="content-block" wx:if="{{interview.firstinterview.length !==0}}">
+      <view class="content-block-title">初面流程中</view>
+      <view class="content-block-item" wx:for="{{interview.firstinterview}}" bindtap="onTouchItem" data-index="{{item}}" data-type="firstinterview">
+        <view class="content-block-item-line1">
+          <view class="content-block-item-line1-name">{{item.info.name}}</view>
+          <view class="content-block-item-line1-session">{{item.info.dateFormat}} {{item.info.timeFormat}} {{item.session.city}}场</view>
+        </view>
+        <view class="content-block-item-line23">
+          {{item.info.university}} {{item.info.major}} {{item.info.height}}CM {{item.info.weight}}KG
+        </view>
+        <view class="content-block-item-line23">
+          毕业时间：{{item.info.graduateDate}} 生日：{{item.info.birthDate}}
+        </view>
+      </view>
+    </view>
+    <view class="content-block" wx:if="{{interview.secondinterview.length !==0}}">
+      <view class="content-block-title">领导面流程中</view>
+      <view class="content-block-item" wx:for="{{interview.secondinterview}}" bindtap="onTouchItem" data-index="{{item}}" data-type="secondinterview">
+        <view class="content-block-item-line1">
+          <view class="content-block-item-line1-name">{{item.info.name}}</view>
+          <view class="content-block-item-line1-session">{{item.session.dateFormat}} {{item.session.timeFormat}} {{item.session.city}}场</view>
+        </view>
+        <view class="content-block-item-line23">
+          {{item.info.university}} {{item.info.major}} {{item.info.height}}CM {{item.info.weight}}KG
+        </view>
+        <view class="content-block-item-line23">
+          毕业时间：{{item.info.graduateDate}} 生日：{{item.info.birthDate}}
+        </view>
+      </view>
+    </view>
+    <view class="content-block" wx:if="{{interview.finalinterview.length !==0}}">
+      <view class="content-block-title">终审考核流程中</view>
+      <view class="content-block-item" wx:for="{{interview.finalinterview}}" bindtap="onTouchItem" data-index="{{item}}" data-type="finalinterview">
+        <view class="content-block-item-line1">
+          <view class="content-block-item-line1-name">{{item.info.name}}</view>
+          <view class="content-block-item-line1-session">{{item.session.dateFormat}} {{item.session.timeFormat}} {{item.session.city}}场</view>
+        </view>
+        <view class="content-block-item-line23">
+          {{item.info.university}} {{item.info.major}} {{item.info.height}}CM {{item.info.weight}}KG
+        </view>
+        <view class="content-block-item-line23">
+          毕业时间：{{item.info.graduateDate}} 生日：{{item.info.birthDate}}
+        </view>
+      </view>
+    </view>
+    <view class="content-block" wx:if="{{physicalcheck.firstphysicalcheck.length !==0}}">
+      <view class="content-block-title">上站初检流程中</view>
+      <view class="content-block-item" wx:for="{{physicalcheck.firstphysicalcheck}}"  bindtap="onTouchItem" data-index="{{item}}" data-type="firstphysicalcheck">
+        <view class="content-block-item-line1">
+          <view class="content-block-item-line1-name">{{item.info.name}}</view>
+          <view class="content-block-item-line1-session">{{item.session.dateFormat}} {{item.session.timeFormat}} {{item.session.city}}场</view>
+        </view>
+        <view class="content-block-item-line23">
+          {{item.info.university}} {{item.info.major}} {{item.info.height}}CM {{item.info.weight}}KG
+        </view>
+        <view class="content-block-item-line23">
+          毕业时间：{{item.info.graduateDate}} 生日：{{item.info.birthDate}}
+        </view>
+      </view>
+    </view>
+    <view class="content-block" wx:if="{{physicalcheck.secondphysicalcheck.length !==0}}">
+      <view class="content-block-title">上站复检流程中</view>
+      <view class="content-block-item" wx:for="{{physicalcheck.secondphysicalcheck}}" bindtap="onTouchItem" data-index="{{item}}" data-type="secondphysicalcheck">
+        <view class="content-block-item-line1">
+          <view class="content-block-item-line1-name">{{item.info.name}}</view>
+          <view class="content-block-item-line1-session">{{item.session.dateFormat}} {{item.session.timeFormat}} {{item.session.city}}场</view>
+        </view>
+        <view class="content-block-item-line23">
+          {{item.info.university}} {{item.info.major}} {{item.info.height}}CM {{item.info.weight}}KG
+        </view>
+        <view class="content-block-item-line23">
+          毕业时间：{{item.info.graduateDate}} 生日：{{item.info.birthDate}}
+        </view>
+      </view>
+    </view>
+    <view class="content-block" wx:if="{{pilotschool.length!==0}}">
+      <view class="content-block-title">航校面试流程中</view>
+      <view class="content-block-item" wx:for="{{pilotschool}}" bindtap="onTouchItem" data-index="{{item}}" data-type="pilotschool">
+        <view class="content-block-item-line1">
+          <view class="content-block-item-line1-name">{{item.info.name}}</view>
+          <view class="content-block-item-line1-session">{{item.session.schoolname}}</view>
+        </view>
+        <view class="content-block-item-line23">
+          {{item.info.university}} {{item.info.major}} {{item.info.height}}CM {{item.info.weight}}KG
+        </view>
+        <view class="content-block-item-line23">
+          毕业时间：{{item.info.graduateDate}} 生日：{{item.info.birthDate}}
+        </view>
+      </view>
+    </view>
+    <view class="content-block" wx:if="{{offer.length!==0}}">
+      <view class="content-block-title">已在线确认OFFER学生</view>
+      <view class="content-block-item" wx:for="{{offer}}" bindtap="onTouchDetails" data-index="{{item}}">
+        <view class="content-block-item-line1">
+          <view class="content-block-item-line1-name">{{item.info.name}}</view>
+          <view class="content-block-item-line1-session">{{item.info.university}} {{item.info.major}}专业</view>
+        </view>
+        <view class="content-block-item-line23">
+          毕业时间：{{item.info.graduateDate}} 生日：{{item.info.birthDate}}
+        </view>
+      </view>
+    </view>
+    <view class="content-block" wx:if="{{failed.length!==0}}">
+      <view class="content-block-title">流程被放弃学生</view>
+      <view class="content-block-item" wx:for="{{failed}}" bindtap="onTouchDetails" data-index="{{item}}">
+        <view class="content-block-item-line1">
+          <view class="content-block-item-line1-name">{{item.info.name}}</view>
+          <view class="content-block-item-line1-session">{{item.info.university}} {{item.info.major}}专业</view>
+        </view>
+        <view class="content-block-item-line23">
+          毕业时间：{{item.info.graduateDate}} 生日：{{item.info.birthDate}}
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>
+
+<view class="mask" wx:if="{{detailsShow}}" bindtap="onCloseMask">
+</view>
+
+<view class="details-box" wx:if="{{detailsShow}}">
+  <scroll-view scroll-y="true">
+    <view class="box-title">学生详情</view>
+    <view class="page__bd" wx:for="{{details_content}}">
+      <mp-form id="form">
+        <mp-cells title="基本信息" footer="以上信息全部必填">
+          <mp-cell title="姓名">
+            <text class="weui-input">{{item.info.name}}</text>
+          </mp-cell>
+          <mp-cell title="民族">
+            <text class="weui-input">{{item.info.ethnicity}}</text>
+          </mp-cell>
+          <mp-cell title="出生日期">
+            <text class="weui-input">{{item.info.birthDate}}</text>
+          </mp-cell>
+          <mp-cell title="户口所在地">
+            <text class="weui-input">{{item.info.birthCity[0]}}{{item.info.birthCity[1]}}{{item.info.birthCity[2]}}</text>
+          </mp-cell>
+          <mp-cell title="身高">
+            <text class="weui-input">{{item.info.height}}</text>
+          </mp-cell>
+          <mp-cell title="体重">
+            <text class="weui-input">{{item.info.weight}}</text>
+          </mp-cell>
+          <mp-cell title="移动电话">
+            <text class="weui-input">{{item.info.mobile}}</text>
+          </mp-cell>
+          <mp-cell title="政治面貌">
+            <text class="weui-input">{{politicalStatus[item.info.politicalStatus]}}</text>
+          </mp-cell>
+          <mp-cell title="身份证号">
+            <text class="weui-input">{{item.info.idcard}}</text>
+          </mp-cell>
+
+          <mp-cell title="证件照">
+            <image src="{{item.identicationPhoto}}" class="photo" mode="widthFix" bindtap="onPreviewImage" data-src="{{item.identicationPhoto}}"></image>
+          </mp-cell>
+        </mp-cells>
+
+        <mp-cells title="教育背景">
+          <mp-cell title="毕业院校">
+            <text class="weui-input">{{item.info.university}}</text>
+          </mp-cell>
+          <mp-cell title="最高学历">
+            <text class="weui-input">{{education[item.info.education]}}</text>
+          </mp-cell>
+          <mp-cell title="入学时间">
+            <text class="weui-input">{{item.info.entryDate}}</text>
+          </mp-cell>
+          <mp-cell title="毕业时间">
+            <text class="weui-input">{{item.info.graduateDate}}</text>
+          </mp-cell>
+          <mp-cell title="主修专业">
+            <text class="weui-input">{{item.info.major}}</text>
+          </mp-cell>
+          <mp-cell title="英语等级">
+            <text class="weui-input">{{englishLevel[item.info.englishLevel]}}</text>
+          </mp-cell>
+          <mp-cell title="该等级分数">
+            <text class="weui-input">{{item.info.englishScore}}</text>
+          </mp-cell>
+          <view class="weui-cell weui-cell_switch">
+            <view class="weui-cell__bd">第一学历为全日制本科</view>
+            <view class="weui-cell__ft">
+              <switch name="ifNormalBachelor" checked="{{item.info.ifNormalBachelor}}" disabled="true" />
+            </view>
+          </view>
+          <view class="weui-cell weui-cell_switch">
+            <view class="weui-cell__bd">主修专业为艺术体育类</view>
+            <view class="weui-cell__ft">
+              <switch name="ifArtAndPhysics" checked="{{item.info.ifArtAndPhysics}}" disabled="true" />
+            </view>
+          </view>
+          <view class="weui-cell weui-cell_switch">
+            <view class="weui-cell__bd">参加过招飞上站体检</view>
+            <view class="weui-cell__ft">
+              <switch name="ifPhysicalChecked" checked="{{item.info.ifPhysicalChecked}}" disabled="true" />
+            </view>
+          </view>
+          <view class="weui-cell weui-cell_switch">
+            <view class="weui-cell__bd">有过飞行学习经历</view>
+            <view class="weui-cell__ft">
+              <switch name="ifPilotStudy" checked="{{item.info.ifPilotStudy}}" disabled="true" />
+            </view>
+          </view>
+        </mp-cells>
+
+        <mp-cells title="最近工作或实习经历" footer="">
+          <mp-cell title="工作单位">
+            <text class="weui-input">{{item.info.company}}</text>
+          </mp-cell>
+          <mp-cell title="从事岗位">
+            <text class="weui-input">{{item.info.job}}</text>
+          </mp-cell>
+          <mp-cell title="工作地点">
+            <text class="weui-input">{{item.info.workPlace}}</text>
+          </mp-cell>
+          <mp-cell title="起止年月">
+            <text class="weui-input">{{item.info.workTime}}</text>
+          </mp-cell>
+        </mp-cells>
+
+        <mp-cells title="家庭情况">
+          <mp-cell title="父亲姓名">
+            <text class="weui-input">{{item.info.fatherName}}</text>
+          </mp-cell>
+          <mp-cell title="父亲年龄">
+            <text class="weui-input">{{item.info.fatherAge}}</text>
+          </mp-cell>
+          <mp-cell title="父亲工作单位">
+            <text class="weui-input">{{item.info.fatherWork}}</text>
+          </mp-cell>
+          <mp-cell title="父亲联系方式">
+            <text class="weui-input">{{item.info.fatherTel}}</text>
+          </mp-cell>
+          <mp-cell title="母亲姓名">
+            <text class="weui-input">{{item.info.motherName}}</text>
+          </mp-cell>
+          <mp-cell title="母亲年龄">
+            <text class="weui-input">{{item.info.motherAge}}</text>
+          </mp-cell>
+          <mp-cell title="母亲工作单位">
+            <text class="weui-input">{{item.info.motherWork}}</text>
+          </mp-cell>
+          <mp-cell title="母亲联系方式">
+            <text class="weui-input">{{item.info.motherTel}}</text>
+          </mp-cell>
+        </mp-cells>
+      </mp-form>
+
+    </view>
+  </scroll-view>
+</view>
+
+<mp-actionSheet bindactiontap="btnActionsheetClick" show="{{showActionsheet}}" actions="{{groups}}" title="候选人管理-{{details_content[0].info.name}}">
+</mp-actionSheet>
+
+<mp-dialog title="确认通过" show="{{confirmShow}}" bindbuttontap="tapConfirmButton" buttons="{{confirmButtons}}">
+  <view>确认通过{{details_content[0].info.name}}同学该流程？</view>
+</mp-dialog>
+
+<mp-dialog title="放弃流程" show="{{giveupShow}}" bindbuttontap="tapGiveupButton" buttons="{{giveupButtons}}">
+  <view>确认放弃{{details_content[0].info.name}}同学招飞流程？</view>
+</mp-dialog>

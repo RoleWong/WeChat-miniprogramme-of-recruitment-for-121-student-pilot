@@ -44,7 +44,7 @@
           </mp-cell>
           <button type="default" bindtap="onChooseImage">{{uploadButton}}</button>
           <mp-cell title="证件照预览" wx:if="{{identificationPhoto != ''}}">
-            <image src="{{identificationPhoto}}" class="photo" mode="aspectFit"></image>
+            <image src="{{identificationPhoto}}" class="photo" mode="aspectFit"bindtap="onPreviewImage" data-src="{{identificationPhoto}}">></image>
           </mp-cell>
         </mp-cells>
 

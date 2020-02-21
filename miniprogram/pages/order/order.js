@@ -1,3 +1,4 @@
+var app = getApp();
 Page({
 
   /**
@@ -6,9 +7,10 @@ Page({
   data: {
     interview: {},
     pickOne: '',
-    interviewStatus: '', 
+    interviewStatus: '',
     headRemind1: '',
-    headRemind2: ''
+    headRemind2: '',
+    orderStatus:''
 
 
   },
@@ -18,13 +20,10 @@ Page({
    */
   onLoad: function(options) {
     var that = this;
-    var app = getApp();
 
     this.setData({
       orderStatus: app.globalData.orderStatus,
     })
-
-
 
     if (app.globalData.orderStatus === 'firstinterview') {
       this.setData({
@@ -70,6 +69,11 @@ Page({
       fail: console.error
     })
 
+  },
+  onShow: function() {
+    console.log(this.data.orderStatus, app.globalData.orderStatus)
+    this.onLoad()
+    
   },
 
   radioChange: function(e) {

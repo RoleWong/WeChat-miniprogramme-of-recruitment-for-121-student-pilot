@@ -1,0 +1,341 @@
+<!--miniprogram/pages/orderfirstinterview/orderfirstinterview.wxml-->
+<scroll-view scroll-y="true">
+  <image src="{{sliderPicture}}" mode="widthFix" class="header"></image>
+  <view class="numberBox" wx:if="{{optionType==='interview'}}">
+    <view class="item">
+      <view class="item-number">{{amountTab.first}}</view>
+      <view class="item-text">初面总人数</view>
+    </view>
+    <view class="item">
+      <view class="item-number">{{amountTab.second}}</view>
+      <view class="item-text">领导面总人数</view>
+    </view>
+    <view class="item">
+      <view class="item-number">{{amountTab.final}}</view>
+      <view class="item-text">终审考核人数</view>
+    </view>
+  </view>
+
+  <view class="numberBox" wx:if="{{optionType==='physicalcheck'}}">
+    <view class="item">
+      <view class="item-number">{{amountTab.first}}</view>
+      <view class="item-text">上站初检人数</view>
+    </view>
+    <view class="item">
+      <view class="item-number">{{amountTab.second}}</view>
+      <view class="item-text">上站复检人数</view>
+    </view>
+    <view class="item">
+      <view class="item-number">{{amountTab.total}}</view>
+      <view class="item-text">体检总场次数</view>
+    </view>
+  </view>
+
+  <view class="numberBox" wx:if="{{optionType==='pilotschool'}}">
+    <view class="item">
+      <view class="item-number">{{amountTab.domestic}}</view>
+      <view class="item-text">国内学飞人数</view>
+    </view>
+    <view class="item">
+      <view class="item-number">{{amountTab.foreign}}</view>
+      <view class="item-text">国外学飞人数</view>
+    </view>
+    <view class="item">
+      <view class="item-number">{{amountTab.total}}</view>
+      <view class="item-text">面试总场次数</view>
+    </view>
+  </view>
+
+
+  <view class="control">
+    <image mode="widthFix" class="control-item-left" src="cloud://pilot121-pztvw.7069-pilot121-pztvw-1300593603/img/newbutton.jpg" bindtap="onShowMask"></image>
+    <image mode="widthFix" class="control-item-right" src="cloud://pilot121-pztvw.7069-pilot121-pztvw-1300593603/img/newbuttonright.jpg" bindtap="tapApplyNewSession"></image>
+  </view>
+
+  <view wx:if="{{optionType==='interview'}}">
+    <view class="block">
+      <view class="block-title">初面</view>
+      <view class="session" wx:for="{{firstInterview}}" wx:for-item="currentInterview" wx:key="firstInterview">
+        <view class="city">
+          <view>{{currentInterview.city}}</view>
+          <view class="applicants">（{{currentInterview.applicants}}人）</view>
+        </view>
+        <view class="detail">
+          <view class="date">{{currentInterview.timeInfo.year}}年{{currentInterview.timeInfo.month}}月{{currentInterview.timeInfo.date}}日 {{currentInterview.timeInfo.hours}}:{{currentInterview.timeInfo.minutes}}开始
+            <label wx:if="{{currentInterview.liaisonOfficer}}"> 接口人:{{currentInterview.liaisonOfficer}}</label>
+          </view>
+          <view class="address">{{currentInterview.address}}{{currentInterview.place}}</view>
+        </view>
+        <view class="choose" bindtap="openActionsheet" data-index="{{currentInterview._id}}" data-type="初面">
+          <image src="../../images/manage.png" mode="widthFix"></image>
+        </view>
+      </view>
+    </view>
+
+    <view class="block">
+      <view class="block-title">领导面</view>
+      <view class="session" wx:for="{{secondInterview}}" wx:for-item="currentInterview" wx:key="secondInterview">
+        <view class="city">
+          <view>{{currentInterview.city}}</view>
+          <view class="applicants">（{{currentInterview.applicants}}人）</view>
+        </view>
+        <view class="detail">
+          <view class="date">{{currentInterview.timeInfo.year}}年{{currentInterview.timeInfo.month}}月{{currentInterview.timeInfo.date}}日 {{currentInterview.timeInfo.hours}}:{{currentInterview.timeInfo.minutes}}开始
+            <label wx:if="{{currentInterview.liaisonOfficer}}"> 接口人:{{currentInterview.liaisonOfficer}}</label>
+          </view>
+          <view class="address">{{currentInterview.address}}{{currentInterview.place}}</view>
+        </view>
+        <view class="choose" bindtap="openActionsheet" data-index="{{currentInterview._id}}" data-type="领导面">
+          <image src="../../images/manage.png" mode="widthFix"></image>
+        </view>
+      </view>
+    </view>
+
+    <view class="block">
+      <view class="block-title">终审考核</view>
+      <view class="session" wx:for="{{finalInterview}}" wx:for-item="currentInterview" wx:key="finalInterview">
+        <view class="city">
+          <view>{{currentInterview.city}}</view>
+          <view class="applicants">（{{currentInterview.applicants}}人）</view>
+        </view>
+        <view class="detail">
+          <view class="date">{{currentInterview.timeInfo.year}}年{{currentInterview.timeInfo.month}}月{{currentInterview.timeInfo.date}}日 {{currentInterview.timeInfo.hours}}:{{currentInterview.timeInfo.minutes}}开始
+            <label wx:if="{{currentInterview.liaisonOfficer}}"> 接口人:{{currentInterview.liaisonOfficer}}</label>
+          </view>
+          <view class="address">{{currentInterview.address}}{{currentInterview.place}}</view>
+        </view>
+        <view class="choose" bindtap="openActionsheet" data-index="{{currentInterview._id}}" data-type="终审考核">
+          <image src="../../images/manage.png" mode="widthFix"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+
+
+  <view wx:if="{{optionType==='physicalcheck'}}">
+    <view class="block">
+      <view class="block-title">上站初检</view>
+      <view class="session" wx:for="{{firstInterview}}" wx:for-item="currentInterview" wx:key="firstInterview">
+        <view class="city">
+          <view>{{currentInterview.city}}</view>
+          <view class="applicants">（{{currentInterview.applicants}}人）</view>
+        </view>
+        <view class="detail">
+          <view class="date">{{currentInterview.timeInfo.year}}年{{currentInterview.timeInfo.month}}月{{currentInterview.timeInfo.date}}日
+            <label wx:if="{{currentInterview.liaisonOfficer}}"> 接口人:{{currentInterview.liaisonOfficer}}</label>
+          </view>
+          <view class="address">体检队：{{currentInterview.place}}</view>
+        </view>
+        <view class="choose" bindtap="openActionsheet" data-index="{{currentInterview._id}}" data-type="上站初检">
+          <image src="../../images/manage.png" mode="widthFix"></image>
+        </view>
+      </view>
+    </view>
+
+    <view class="block">
+      <view class="block-title">上站复检</view>
+      <view class="session" wx:for="{{secondInterview}}" wx:for-item="currentInterview" wx:key="secondInterview">
+        <view class="city">
+          <view>{{currentInterview.city}}</view>
+          <view class="applicants">（{{currentInterview.applicants}}人）</view>
+        </view>
+        <view class="detail">
+          <view class="date">{{currentInterview.timeInfo.year}}年{{currentInterview.timeInfo.month}}月{{currentInterview.timeInfo.date}}日
+            <label wx:if="{{currentInterview.liaisonOfficer}}"> 接口人:{{currentInterview.liaisonOfficer}}</label>
+          </view>
+          <view class="address">体检队：{{currentInterview.place}}</view>
+        </view>
+        <view class="choose" bindtap="openActionsheet" data-index="{{currentInterview._id}}" data-type="上站复检">
+          <image src="../../images/manage.png" mode="widthFix"></image>
+        </view>
+      </view>
+    </view>
+
+  </view>
+
+  <view wx:if="{{optionType==='pilotschool'}}">
+    <view class="block">
+      <view class="session" wx:for="{{firstInterview}}" wx:for-item="currentInterview" wx:key="firstInterview">
+        <view class="city">
+          <view>{{currentInterview.type}}</view>
+          <view class="applicants">（{{currentInterview.applicants}}人）</view>
+        </view>
+        <view class="detail">
+          <view class="date">{{currentInterview.timeInfo.year}}年{{currentInterview.timeInfo.month}}月{{currentInterview.timeInfo.date}}日 {{currentInterview.timeInfo.hours}}:{{currentInterview.timeInfo.minutes}}
+            <label wx:if="{{currentInterview.liaisonOfficer}}">接口人：{{currentInterview.liaisonOfficer}}</label>
+          </view>
+          <view class="address">航校：{{currentInterview.schoolname}} || 面试地：{{currentInterview.place}} </view>
+        </view>
+        <view class="choose" bindtap="openActionsheet" data-index="{{currentInterview._id}}" data-type="航校面试">
+          <image src="../../images/manage.png" mode="widthFix"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+
+</scroll-view>
+
+<mp-dialog title="申请新设场次" show="{{showApplyNewSession}}" bindbuttontap="tapDialogButtonRight" buttons="{{qiwei}}">
+  <view>若最初安排场次无法满足需求，请企微联系ponyma(马化腾)安排新设场次。</view>
+</mp-dialog>
+
+<mp-toptips msg="{{error}}" type="error" show="{{error}}"></mp-toptips>
+
+<view class="newSession" wx:if="{{newSessionShow || editSessionShow}}" bindtap="onCloseMask">
+</view>
+
+
+<view class="newSession-box" wx:if="{{editSessionShow}}">
+  <scroll-view scroll-y="true">
+    <view class="box-title">{{optionType==='physicalcheck'? '体检':'面试'}}场次编辑</view>
+    <view class="page__bd">
+      <form bindsubmit="formSubmit" bindreset="formReset">
+        <mp-form id="form">
+          <mp-cells title="安排信息" footer="">
+            <mp-cell title="类型">
+              <picker value="{{typeIndex}}" range="{{typeArray_interview}}" name="type" bindchange="bindTypeChange" wx:if="{{optionType==='interview'}}">
+                <view class="weui-input">{{typeArray_interview[typeIndex]}}</view>
+              </picker>
+              <picker value="{{typeIndex}}" range="{{typeArray_physicalCheck}}" name="type" bindchange="bindTypeChange" wx:if="{{optionType==='physicalcheck'}}">
+                <view class="weui-input">{{typeArray_physicalCheck[typeIndex]}}</view>
+              </picker>
+              <view class="weui-input" wx:if="{{optionType==='pilotschool'}}">{{editSession.original.type}}学飞航校面试</view>
+            </mp-cell>
+            <mp-cell title="接口人">
+              <input class="weui-input" placeholder="请填写英文ID" name="liaisonOfficer" value="{{editSession.original.liaisonOfficer}}" />
+            </mp-cell>
+
+          </mp-cells>
+          <mp-cells title="外显信息" footer="">
+            <mp-cell title="日期">
+              <picker value="{{date}}" start="2019-01-01" end="2020-12-31" name="date" mode="date" data-field="date" bindchange="bindDateChange" fields="day">
+                <view class="weui-input">{{date}}</view>
+              </picker>
+            </mp-cell>
+            <mp-cell title="集合时间">
+              <picker value="{{time}}" start="04:00" end="21:00" name="time" mode="time" bindchange="bindTimeChange">
+                <view class="weui-input">{{time}}</view>
+              </picker>
+            </mp-cell>
+            <mp-cell title="城市" wx:if="{{optionType === 'interview' || optionType === 'physicalcheck'}}">
+              <input class="weui-input" placeholder="例：深圳" name="city" value="{{editSession.original.city}}" />
+            </mp-cell>
+            <mp-cell title="地址">
+              <input class="weui-input" placeholder="" name="address" value="{{editSession.original.address}}" />
+            </mp-cell>
+            <mp-cell title="地点" wx:if="{{optionType === 'interview' || optionType === 'pilotschool'}}">
+              <input class="weui-input" placeholder="" name="place" value="{{editSession.original.place}}" />
+            </mp-cell>
+            <mp-cell title="体检队" wx:if="{{optionType === 'physicalcheck'}}">
+              <input class="weui-input" placeholder="" name="place" value="{{editSession.original.place}}" />
+            </mp-cell>
+            <mp-cell title="学飞类型" wx:if="{{optionType === 'pilotschool'}}">
+              <input class="weui-input" placeholder="国内、国外" name="type" value="{{editSession.original.type}}" />
+            </mp-cell>
+            <mp-cell title="航校名称" wx:if="{{optionType === 'pilotschool'}}">
+              <input class="weui-input" placeholder="" name="schoolname" value="{{editSession.original.schoolname}}" />
+            </mp-cell>
+            <mp-cell title="航校地址" wx:if="{{optionType === 'pilotschool'}}">
+              <input class="weui-input" placeholder="" name="schooladdress" value="{{editSession.original.schooladdress}}" />
+            </mp-cell>
+          </mp-cells>
+          <mp-cells title="导航信息" footer="">
+            <mp-cell title="纬度">
+              <input class="weui-input" placeholder="" name="latitude" value="{{editSession.original.location.latitude}}" />
+            </mp-cell>
+            <mp-cell title="经度">
+              <input class="weui-input" placeholder="" name="longitude" value="{{editSession.original.location.longitude}}" />
+            </mp-cell>
+            <mp-cell title="地点名">
+              <input class="weui-input" placeholder="" name="addressName" value="{{editSession.original.location.name}}" />
+            </mp-cell>
+          </mp-cells>
+        </mp-form>
+        <view class="weui-btn-area">
+          <button class="weui-btn" type="primary" formType="submit">提交更新</button>
+        </view>
+      </form>
+    </view>
+  </scroll-view>
+</view>
+
+<view class="newSession-box" wx:if="{{newSessionShow}}">
+  <scroll-view scroll-y="true">
+    <view class="box-title">{{optionType==='physicalcheck'? '体检':'面试'}}场次录入</view>
+    <view class="page__bd">
+      <form bindsubmit="formSubmit" bindreset="formReset">
+        <mp-form id="form">
+          <mp-cells title="安排信息" footer="">
+            <mp-cell title="类型">
+              <picker value="{{typeIndex}}" range="{{typeArray_interview}}" name="type" bindchange="bindTypeChange" wx:if="{{optionType==='interview'}}">
+                <view class="weui-input">{{typeArray_interview[typeIndex]}}</view>
+              </picker>
+              <picker value="{{typeIndex}}" range="{{typeArray_physicalCheck}}" name="type" bindchange="bindTypeChange" wx:if="{{optionType==='physicalcheck'}}">
+                <view class="weui-input">{{typeArray_physicalCheck[typeIndex]}}</view>
+              </picker>
+              <view class="weui-input" wx:if="{{optionType==='pilotschool'}}">航校面试</view>
+            </mp-cell>
+            <mp-cell title="接口人">
+              <input class="weui-input" placeholder="请填写英文ID" name="liaisonOfficer" />
+            </mp-cell>
+
+          </mp-cells>
+          <mp-cells title="外显信息" footer="">
+            <mp-cell title="日期">
+              <picker value="{{date}}" start="2019-01-01" end="2020-12-31" name="date" mode="date" data-field="date" bindchange="bindDateChange" fields="day">
+                <view class="weui-input">{{date}}</view>
+              </picker>
+            </mp-cell>
+            <mp-cell title="集合时间">
+              <picker value="{{time}}" start="04:00" end="21:00" name="time" mode="time" bindchange="bindTimeChange">
+                <view class="weui-input">{{time}}</view>
+              </picker>
+            </mp-cell>
+            <mp-cell title="城市" wx:if="{{optionType === 'interview' || optionType === 'physicalcheck'}}">
+              <input class="weui-input" placeholder="例：深圳" name="city" />
+            </mp-cell>
+            <mp-cell title="地址">
+              <input class="weui-input" placeholder="" name="address" />
+            </mp-cell>
+            <mp-cell title="地点" wx:if="{{optionType === 'interview' || optionType === 'pilotschool'}}">
+              <input class="weui-input" placeholder="" name="place" />
+            </mp-cell>
+            <mp-cell title="体检队" wx:if="{{optionType === 'physicalcheck'}}">
+              <input class="weui-input" placeholder="" name="place" />
+            </mp-cell>
+            <mp-cell title="学飞类型" wx:if="{{optionType === 'pilotschool'}}">
+              <input class="weui-input" placeholder="国内、国外" name="type" />
+            </mp-cell>
+            <mp-cell title="航校名称" wx:if="{{optionType === 'pilotschool'}}">
+              <input class="weui-input" placeholder="" name="schoolname" />
+            </mp-cell>
+            <mp-cell title="航校地址" wx:if="{{optionType === 'pilotschool'}}">
+              <input class="weui-input" placeholder="" name="schooladdress" />
+            </mp-cell>
+          </mp-cells>
+          <mp-cells title="导航信息" footer="">
+            <mp-cell title="纬度">
+              <input class="weui-input" placeholder="" name="latitude" />
+            </mp-cell>
+            <mp-cell title="经度">
+              <input class="weui-input" placeholder="" name="longitude" />
+            </mp-cell>
+            <mp-cell title="地点名">
+              <input class="weui-input" placeholder="" name="addressName" />
+            </mp-cell>
+          </mp-cells>
+        </mp-form>
+        <view class="weui-btn-area">
+          <button class="weui-btn" type="primary" formType="submit">上线供预定</button>
+        </view>
+      </form>
+    </view>
+  </scroll-view>
+</view>
+
+<mp-actionSheet bindactiontap="btnActionsheetClick" show="{{showActionsheet}}" actions="{{groups}}" title="{{currentActionSheetAction_sessionType}}场次管理操作">
+</mp-actionSheet>
+
+<mp-dialog title="确认下线" show="{{deleteShow}}" bindbuttontap="tapDeleteButton" buttons="{{deleteButtons}}">
+  <view>确认下线该{{currentActionSheetAction_sessionType}}场次？场次ID：{{currentActionSheetAction_id}}。</view>
+</mp-dialog>

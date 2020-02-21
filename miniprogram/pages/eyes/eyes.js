@@ -1,4 +1,4 @@
-// miniprogram/pages/eyes/eyes.js
+ // miniprogram/pages/eyes/eyes.js
 Page({
 
   data: {

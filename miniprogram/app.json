@@ -1,9 +1,15 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/staff/staff",
+    "pages/studentManage/studentManage",
     "pages/eyes/eyes",
-    "pages/apply/apply",
+    "pages/sessionManage/sessionManage",
     "pages/tools/tools",
+    "pages/body/body",
+    "pages/BMI/BMI",
+    "pages/cycle/cycle",
+    "pages/apply/apply",
     "pages/cv/cv",
     "pages/order/order",
     "pages/waitingResult/waitingResult",
@@ -11,16 +17,13 @@
     "pages/ielts/ielts",
     "pages/pilotschoolorder/pilotschoolorder",
     "pages/result/result",
-    "pages/cycle/cycle",
-    "pages/BMI/BMI",
-    "pages/body/body",
     "pages/webview/webview"
   ],
   "window": {
     "backgroundColor": "#ffffff",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#ffffff",
-    "navigationBarTitleText": "121航空大毕改招飞",
+    "navigationBarTitleText": "老北方航空大毕改招飞",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
@@ -54,12 +57,15 @@
   },
   "usingComponents": {},
   "sitemapLocation": "sitemap.json",
+  "navigateToMiniProgramAppIdList":[
+    "wxb032bc789053daf4"
+  ],
   "permission": {
     "scope.userLocation": {
       "desc": "本功能用于在地图中定位准确地点供参考。"
     },
-    "scope.address":{
-      "desc":"本功能用于获取纸质材料（如OFFER）的邮寄地址。"
+    "scope.address": {
+      "desc": "本功能用于获取纸质材料（如OFFER）的邮寄地址。"
     }
   },
   "plugins": {

@@ -1,2 +1,55 @@
-<!--miniprogram/pages/BMI/BMI.wxml-->
-<text>miniprogram/pages/BMI/BMI.wxml</text>
+<scroll-view scroll-y="true">
+  <view class="header">
+    <view class="title">外科情况自检</view>
+    <view class="remind">若您的身高体重数据不在滑块范围内，则为不符合标准。</view>
+  </view>
+
+  <view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+    <view class="page__bd">
+      <form bindsubmit="formSubmit" bindreset="formReset">
+        <mp-form id="form">
+
+          <mp-cells title="BMI" footer="">
+            <mp-cell title="身高（CM）">
+              <slider name="height" min="165" max="190" step="1" value="183" show-value/>
+            </mp-cell>
+            <mp-cell title="体重（KG）">
+              <slider name="weight" min="40" max="110" step="1" value="80" show-value/>
+            </mp-cell>
+
+          </mp-cells>
+
+          <mp-cells title="外科病症">
+            <mp-checkbox-group prop="checkbox" multi="{{true}}" bindchange="checkboxChange">
+              <mp-checkbox wx:for="{{checkboxItems}}" wx:key="value" label="{{item.name}}" value="{{item.value}}" checked="{{item.checked}}"></mp-checkbox>
+            </mp-checkbox-group>
+          </mp-cells>
+
+        </mp-form>
+
+        <view class="weui-btn-area">
+          <button class="weui-btn margin-bottom" type="primary" formType="submit">{{buttonText}}</button>
+        </view>
+      </form>
+    </view>
+  </view>
+
+  <view class="remindback" wx:if="{{pass}}">
+    <icon type="success" size="50" class="remind-icon"></icon>
+    <view class="remind-text">恭喜，您的数据符合要求。BMI指数为{{bmi}}。</view>
+  </view>
+
+  <view class="remindback" wx:if="{{failed}}">
+    <icon type="cancel" size="50" class="remind-icon" color="#a91f51"></icon>
+    <view class="remind-text">抱歉，您的数据暂时不符合要求。原因如下：</view>
+  </view>
+
+  <view wx:for="{{reasonListTotal}}" wx:if="{{failed}}">
+    <view class="reason">
+      <view class="reasonIndex">{{index+1}}. </view>
+      <view class="reasonContent">{{item}}</view>
+    </view>
+  </view>
+
+  <view class="bottom">.</view>
+</scroll-view>

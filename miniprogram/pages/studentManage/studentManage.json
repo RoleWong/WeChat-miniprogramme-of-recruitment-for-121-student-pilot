@@ -1,0 +1,18 @@
+{
+  "component": true,
+  "usingComponents": {
+    "mp-toptips": "../components/toptips/toptips",
+    "mp-cells": "../components/cells/cells",
+    "mp-cell": "../components/cell/cell",
+    "mp-checkbox": "../components/checkbox/checkbox",
+    "mp-checkbox-group": "../components/checkbox-group/checkbox-group",
+    "mp-form": "../components/form/form",
+    "mp-dialog": "../../components/dialog/dialog",
+    "mp-actionSheet": "../../components/actionsheet/actionsheet"
+  },
+  "navigationBarTitleText": "候选人管理",
+  "navigationBarBackgroundColor": "#7a4a33",
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark",
+  "navigationBarTextStyle": "white"
+}

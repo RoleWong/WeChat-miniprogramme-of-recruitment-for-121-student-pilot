@@ -28,7 +28,7 @@ page{
   justify-content: start;
   background-color: #fafafa;
   padding-top: 40rpx;
-  padding-bottom: 50rpx;
+  padding-bottom: 40rpx;
   margin:20rpx;
   margin-bottom: 70rpx;
 }

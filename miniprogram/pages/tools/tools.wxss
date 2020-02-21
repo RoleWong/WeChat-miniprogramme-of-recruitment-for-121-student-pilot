@@ -44,6 +44,10 @@ page{
   width:70rpx;
 }
 
+.content-box-image-avatar{
+  width:90rpx;
+}
+
 .content-box-right-right{
   width:50rpx;
 }
@@ -121,3 +125,13 @@ display: flex;
   vertical-align: middle;
 }
 
+.title image{
+  width:35rpx;
+  vertical-align:middle;
+}
+
+.title text{
+  vertical-align: middle;
+  padding: 0 30rpx 0 30rpx;
+  line-height: 1;
+}
