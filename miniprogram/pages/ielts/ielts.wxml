@@ -15,35 +15,35 @@
       <mp-form id="form">
 
         <mp-cells title="雅思成绩" footer=" ">
-          <mp-cell title="总分">
+          <mp-cell title="* 总分">
             <slider name="total" min="5.5" max="9.0" step="0.5" value="7.0"  show-value/>
           </mp-cell>
-          <mp-cell title="阅读">
+          <mp-cell title="* 阅读">
             <slider name="reading" min="4.5" max="9.0" step="0.5" value="7.5" show-value/>
           </mp-cell>
-          <mp-cell title="听力">
+          <mp-cell title="* 听力">
             <slider name="listening" min="5.0" max="9.0" step="0.5" value="7.5" show-value/>
           </mp-cell>
-          <mp-cell title="写作">
+          <mp-cell title="* 写作">
             <slider name="writing" min="4.5" max="9.0" step="0.5" value="6.5" show-value/>
           </mp-cell>
-          <mp-cell title="口语">
+          <mp-cell title="* 口语">
             <slider name="speaking" min="5.0" max="9.0" step="0.5" value="6.0" show-value/>
           </mp-cell>
         </mp-cells>
 
         <mp-cells title="成绩单信息" footer="若上方自动判断有效期不足，请再次参加雅思考试，否则将影响后续招飞流程。请确保航校面试时雅思成绩仍处于有效期范围内。">
-          <mp-cell title="考试日期">
+          <mp-cell title="* 考试日期">
             <picker value="{{testDate}}" start="2017-12-01" end="2020-04-15" name="testDate" mode="date" data-field="date" bindchange="bindTestDateChange" fields="day">
               <view class="weui-input">{{testDate}}</view>
             </picker>
           </mp-cell>
-          <mp-cell title="成绩公布日期">
+          <mp-cell title="* 成绩公布日">
             <picker value="{{scoreDate}}" start="2017-12-01" end="2020-04-28" name="scoreDate" mode="date" data-field="date" bindchange="bindScoreDateChange" fields="day">
               <view class="weui-input">{{scoreDate}}</view>
             </picker>
           </mp-cell>
-          <mp-cell title="TRFN">
+          <mp-cell title="* TRFN">
             <input class="weui-input" placeholder="成绩单右下角18位大写字母+数字" name="TRFN" />
           </mp-cell>
           <view class="weui-cell weui-cell_switch">

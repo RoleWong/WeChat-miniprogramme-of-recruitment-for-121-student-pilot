@@ -1,7 +1,7 @@
 page{
   width: 100%;
   height: 100%;
-  background-color: #ffffff;
+  background-color: #111111;
 }
 
 .header{
@@ -13,7 +13,7 @@ page{
 
 .title{
   margin: 20rpx 0 20rpx 0;
-  color:#353535;
+  color:#ffffff;
   font-weight: bold;
   font-size: 38rpx; 
   text-align: center;
@@ -21,7 +21,7 @@ page{
 
 .remind{
   font-size: 27rpx;
-  color:#888888;
+  color:#ffffff;
   width:80%;
   margin-left:10%;
 }
@@ -40,7 +40,7 @@ page{
 }
 
 .remind-text{
-  color: #353535;
+  color: #ffffff;
   font-size:30rpx;
 }
 
@@ -49,7 +49,7 @@ page{
   flex-direction: row;
   padding:5rpx 65rpx 5rpx 65rpx;
   /* border-bottom:#ffc6db solid 1px; */
-  color:#353535;
+  color:#ffffff;
 }
 
 .reasonIndex{
@@ -61,5 +61,31 @@ page{
 
 .bottom{
   margin-bottom: 100rpx;
+  color:#222222;
+}
+
+.darkModeBlock{
+  background-color: #222222;
+  color:#ffffff
+}
+
+.darkModeBlock_remind{
+  background-color: #222222;
+  color:#ffffff;
+  font-size:27rpx;
+  padding: 20rpx 0 0 28rpx;
+}
+.darkModeBlockSeperate{
+  margin-bottom: 40rpx;
+  color:#111111;
+}
+
+.button{
+  background-color: #222222;
+  color:#ffffff;
+}
+
+.buttonHover{
+  background-color: #333333;
   color:#ffffff;
 }

@@ -11,12 +11,12 @@
       <view class="address">{{currentInterview.address}}{{currentInterview.place}}</view>
     </view>
     <view class="choose">
-      <radio value="{{currentInterview._id}}">
+      <radio value="{{currentInterview._id}}" color="#a91f51">
       </radio> 
     </view>
   </view>
 
 </radio-group>
 <view class="submit">
-  <button class="submit-button" type="primary" bindtap="onSubmit">确认预约</button>
+  <button class="submit-button" bindtap="onSubmit">确认预约</button>
 </view>

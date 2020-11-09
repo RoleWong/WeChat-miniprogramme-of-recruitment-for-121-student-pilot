@@ -42,7 +42,7 @@ Page({
         src: "cloud://pilot121-pztvw.7069-pilot121-pztvw-1300593603/img/success.jpg"
       })
       console.log(this.data.type)
-    }
+    } 
     wx.cloud.callFunction({
       name: 'db',
       data: {

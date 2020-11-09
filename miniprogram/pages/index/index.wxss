@@ -56,7 +56,6 @@ page {
   box-shadow: 5px 5px 10px #b3b3b3;
 }
 
-
 .fastEnter {
   display: flex;
   flex-direction: row;
@@ -88,29 +87,29 @@ page {
   font-weight: bold;
 }
 
-.suggest{
+.suggest {
   margin: 40rpx 0 40rpx 5%;
-  font-size:25rpx;
-  color:#888888;
+  font-size: 25rpx;
+  color: #888;
 }
 
-.block{
+.block {
   background-color: #fdf6f9;
   width: 90%;
-  margin-left:5%; 
+  margin-left: 5%;
   display: flex;
   flex-direction: column;
 }
 
-.block-row{
+.block-row {
   display: flex;
   flex-direction: row;
-  height:100rpx;
+  height: 100rpx;
   align-content: center;
   align-items: center;
 }
 
-.block-row-item{
+.block-row-item {
   display: flex;
   flex-direction: row;
   color: #aa1f52;
@@ -121,14 +120,14 @@ page {
   width: 50%;
 }
 
-.block-row-item-icon{
+.block-row-item-icon {
   width: 30rpx;
   margin-left: 40rpx;
   margin-right: 20rpx;
 }
 
-.video{
-    width: 90%;
-  margin-left:5%; 
+.video {
+  width: 90%;
+  margin-left: 5%;
   margin-bottom: 200rpx;
 }

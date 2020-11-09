@@ -8,14 +8,14 @@
     <view class="info">
     <view class="type">{{currentInterview.type}}学飞</view>
       <view class="interviewInfo_citychoose">
-        <radio value="{{currentInterview._id}}">
+        <radio color="#a91f51" value="{{currentInterview._id}}">
         </radio>
       </view>
       <view class="schoolInfo">
         <view class="schoonInfo-name">{{currentInterview.schoolname}}</view>
         <view class="schoonInfo-address">所在地：{{currentInterview.schooladdress}}</view>
       </view>
-      <view class="interviewInfo">
+      <view class="interviewInfo"> 
         <view class="interviewInfo_city">面试</view>
         <view class="interviewInfo_citydetail">
           <view class="date">时间：{{currentInterview.timeInfo.year}}年{{currentInterview.timeInfo.month}}月{{currentInterview.timeInfo.date}}日 {{currentInterview.timeInfo.hours}}:{{currentInterview.timeInfo.minutes}}开始</view>
@@ -28,5 +28,5 @@
 
 </radio-group>
 <view class="submit">
-  <button class="submit-button" type="primary" bindtap="onSubmit">确认预约</button>
+  <button class="submit-button" bindtap="onSubmit">确认预约</button>
 </view>

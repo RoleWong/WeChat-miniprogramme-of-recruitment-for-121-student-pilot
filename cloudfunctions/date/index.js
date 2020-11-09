@@ -5,21 +5,16 @@ cloud.init()
 
 function ieltsValidate(event, context) {
   let date = new Date();
-
   var originalDateString = (event.date).split('-')
   var originalYear = Number(originalDateString[0])
   var originalMonth = Number(originalDateString[1])-1
   var originalDay = Number(originalDateString[2])
-  // var year = Number(date.getFullYear()) 
-  // var month = Number(date.getMonth() + 1)
-  // var day = Number(date.getDate())
   let originalDate = new Date()
   originalDate.setFullYear(originalYear, originalMonth, originalDay)
   console.log(date, originalDate)
   date = Date.parse(date)
   originalDate = Date.parse(originalDate)
   console.log(date, originalDate)
-
   const timeSpan = Math.abs(date - originalDate); 
   const daySpan = Math.floor(timeSpan / (24 * 3600 * 1000)); 
   console.log(daySpan)

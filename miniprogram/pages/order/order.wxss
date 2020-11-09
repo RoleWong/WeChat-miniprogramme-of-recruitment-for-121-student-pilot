@@ -71,8 +71,11 @@ page{
   padding-left: 20rpx;
   box-sizing: border-box;
   padding-bottom:200rpx;
+  
 }
 
 .submit-button{
   margin-bottom: 30rpx;
+  background-color: #a91f51;
+  color:#ffffff;
 }

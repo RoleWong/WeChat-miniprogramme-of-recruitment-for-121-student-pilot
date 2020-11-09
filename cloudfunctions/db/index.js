@@ -96,9 +96,9 @@ function getStatus(event, context) {
   }).get()
 };
 
-function confirmOffer(event, context) {
+async function confirmOffer(event, context) {
   const wxContext = cloud.getWXContext()
-  db.collection('status').where({
+  await db.collection('status').where({
       openid: wxContext.OPENID,
     })
     .update({
@@ -123,7 +123,7 @@ async function getPilot(event, context) {
   var allInterview = await db.collection('pilotschool').get();
   console.log('全部面试场次', allInterview);
 
-  allInterview.data.forEach((item, index) => {
+  await allInterview.data.forEach((item, index) => {
     const date = new Date(item.date);
     item.timeInfo = {
       year: date.getFullYear(),
@@ -185,7 +185,6 @@ async function getAllInterview(event, context) {
 };
 
 async function getAllPhysicalCheck(event, context) {
-
   let firstPhysicalCheck = await db.collection("firstphysicalcheck").get();
   let firstPhysicalCheckAmount = 0
   let totalPhysicalCheckSessionAmount = 0
@@ -201,7 +200,6 @@ async function getAllPhysicalCheck(event, context) {
       minutes: fixZero(date.getMinutes())
     };
   });
-
   let secondPhysicalCheck = await db.collection("secondphysicalcheck").get();
   let secondPhysicalCheckAmount = 0
   secondPhysicalCheck.data.forEach((item, index) => {
@@ -216,10 +214,8 @@ async function getAllPhysicalCheck(event, context) {
       minutes: fixZero(date.getMinutes())
     };
   });
-
   console.log(firstPhysicalCheck, secondPhysicalCheck)
   return [firstPhysicalCheck, secondPhysicalCheck, firstPhysicalCheckAmount, secondPhysicalCheckAmount, totalPhysicalCheckSessionAmount]
-
 }
 
 async function getAllPilotSchool(event, context) {
@@ -340,7 +336,7 @@ async function confirmInterview(event, context) {
   //场次自身计数器增加（使用新方法）
 
   const _ = db.command
-  db.collection(event.session).where({
+  await db.collection(event.session).where({
       _id: event.pick
     })
     .update({
@@ -348,6 +344,7 @@ async function confirmInterview(event, context) {
         applicants: _.inc(1)
       },
     })
+  return true;
 
   //以下是原先获取，服务端+1，再录入的方法
   // let currentInterviewStatus = await db.collection(event.session).where({
@@ -444,7 +441,7 @@ function writeBackgroundInvestigation(event, context) {
 function writeIELTS(event, context) {
   console.log('开始录入IELTS', event)
   const wxContext = cloud.getWXContext();
-  db.collection('status').where({
+  return db.collection('status').where({
       openid: wxContext.OPENID,
     })
     .update({
@@ -459,7 +456,7 @@ function jumpIELTS(event, context) {
   console.log('开始跳过雅思', event)
   const wxContext = cloud.getWXContext();
 
-  db.collection('status').where({
+  return db.collection('status').where({
       openid: wxContext.OPENID,
     })
     .update({
@@ -473,7 +470,7 @@ function writeAddress(event, context) {
   console.log('开始写入邮寄地址', event)
   const wxContext = cloud.getWXContext();
 
-  db.collection('status').where({
+  return db.collection('status').where({
       openid: wxContext.OPENID,
     })
     .update({
@@ -506,7 +503,7 @@ async function writeCV(event, context) {
 
   //若雅思成绩达标，直接写入status表
   if (event.form.englishLevel === "2" && event.form.englishScore >= 5.5) {
-    db.collection('status').where({
+    await db.collection('status').where({
         openid: wxContext.OPENID,
       })
       .update({
@@ -520,7 +517,7 @@ async function writeCV(event, context) {
       });
 
   } else {
-    db.collection('status').where({
+    await db.collection('status').where({
         openid: wxContext.OPENID,
       })
       .update({
@@ -601,7 +598,6 @@ async function getWaitingDetail(event, context) {
   var openid = wxContext.OPENID
   var currentStatusCode = await getStatusCode();
   console.log('获取到当前状态', currentStatusCode)
-
 
   if (currentStatusCode === 2) {
     //初面的等待结果页面数据
@@ -809,11 +805,11 @@ async function getWaitingDetail(event, context) {
   }
 }
 
-function failedProcess(event, context) {
+async function failedProcess(event, context) {
   console.log('failedProcess', event)
 
   if (event.sessionType === "firstinterview") {
-    db.collection('status').where({
+    await db.collection('status').where({
         openid: event.openid,
       })
       .update({
@@ -822,7 +818,7 @@ function failedProcess(event, context) {
         },
       });
     const _ = db.command
-    db.collection('firstinterview').where({
+    await db.collection('firstinterview').where({
         _id: event.sessionId
       })
       .update({
@@ -833,7 +829,7 @@ function failedProcess(event, context) {
   }
 
   if (event.sessionType === "secondinterview") {
-    db.collection('status').where({
+    await db.collection('status').where({
         openid: event.openid,
       })
       .update({
@@ -842,7 +838,7 @@ function failedProcess(event, context) {
         },
       });
     const _ = db.command
-    db.collection('secondinterview').where({
+    await db.collection('secondinterview').where({
         _id: event.sessionId
       })
       .update({
@@ -853,7 +849,7 @@ function failedProcess(event, context) {
   }
 
   if (event.sessionType === "finalinterview") {
-    db.collection('status').where({
+    await db.collection('status').where({
         openid: event.openid,
       })
       .update({
@@ -862,7 +858,7 @@ function failedProcess(event, context) {
         },
       });
     const _ = db.command
-    db.collection('finalinterview').where({
+    await db.collection('finalinterview').where({
         _id: event.sessionId
       })
       .update({
@@ -873,7 +869,7 @@ function failedProcess(event, context) {
   }
 
   if (event.sessionType === "firstphysicalcheck") {
-    db.collection('status').where({
+    await db.collection('status').where({
         openid: event.openid,
       })
       .update({
@@ -882,7 +878,7 @@ function failedProcess(event, context) {
         },
       });
     const _ = db.command
-    db.collection('firstphysicalcheck').where({
+    await db.collection('firstphysicalcheck').where({
         _id: event.sessionId
       })
       .update({
@@ -893,7 +889,7 @@ function failedProcess(event, context) {
   }
 
   if (event.sessionType === "secondphysicalcheck") {
-    db.collection('status').where({
+    await db.collection('status').where({
         openid: event.openid,
       })
       .update({
@@ -902,7 +898,7 @@ function failedProcess(event, context) {
         },
       });
     const _ = db.command
-    db.collection('secondphysicalcheck').where({
+    await db.collection('secondphysicalcheck').where({
         _id: event.sessionId
       })
       .update({
@@ -913,7 +909,7 @@ function failedProcess(event, context) {
   }
 
   if (event.sessionType === "pilotschool") {
-    db.collection('status').where({
+    await db.collection('status').where({
         openid: event.openid,
       })
       .update({
@@ -922,7 +918,7 @@ function failedProcess(event, context) {
         },
       });
     const _ = db.command
-    db.collection('pilotschool').where({
+    await db.collection('pilotschool').where({
         _id: event.sessionId
       })
       .update({
@@ -933,11 +929,11 @@ function failedProcess(event, context) {
   }
 }
 
-function passProcess(event, context) {
+async function passProcess(event, context) {
   console.log('passProcess', event)
 
   if (event.sessionType === "firstinterview") {
-    db.collection('status').where({
+    await db.collection('status').where({
         openid: event.openid,
       })
       .update({
@@ -946,7 +942,7 @@ function passProcess(event, context) {
         },
       });
     const _ = db.command
-    db.collection('firstinterview').where({
+    await db.collection('firstinterview').where({
         _id: event.sessionId
       })
       .update({
@@ -957,7 +953,7 @@ function passProcess(event, context) {
   }
 
   if (event.sessionType === "secondinterview") {
-    db.collection('status').where({
+    await db.collection('status').where({
         openid: event.openid,
       })
       .update({
@@ -966,7 +962,7 @@ function passProcess(event, context) {
         },
       });
     const _ = db.command
-    db.collection('secondinterview').where({
+    await db.collection('secondinterview').where({
         _id: event.sessionId
       })
       .update({
@@ -977,7 +973,7 @@ function passProcess(event, context) {
   }
 
   if (event.sessionType === "finalinterview") {
-    db.collection('status').where({
+    await db.collection('status').where({
         openid: event.openid,
       })
       .update({
@@ -986,7 +982,7 @@ function passProcess(event, context) {
         },
       });
     const _ = db.command
-    db.collection('finalinterview').where({
+    await db.collection('finalinterview').where({
         _id: event.sessionId
       })
       .update({
@@ -997,7 +993,7 @@ function passProcess(event, context) {
   }
 
   if (event.sessionType === "firstphysicalcheck") {
-    db.collection('status').where({
+    await db.collection('status').where({
         openid: event.openid,
       })
       .update({
@@ -1006,7 +1002,7 @@ function passProcess(event, context) {
         },
       });
     const _ = db.command
-    db.collection('firstphysicalcheck').where({
+    await db.collection('firstphysicalcheck').where({
         _id: event.sessionId
       })
       .update({
@@ -1017,7 +1013,7 @@ function passProcess(event, context) {
   }
 
   if (event.sessionType === "secondphysicalcheck") {
-    db.collection('status').where({
+    await db.collection('status').where({
         openid: event.openid,
       })
       .update({
@@ -1026,7 +1022,7 @@ function passProcess(event, context) {
         },
       });
     const _ = db.command
-    db.collection('secondphysicalcheck').where({
+    await db.collection('secondphysicalcheck').where({
         _id: event.sessionId
       })
       .update({
@@ -1037,7 +1033,7 @@ function passProcess(event, context) {
   }
 
   if (event.sessionType === "pilotschool") {
-    db.collection('status').where({
+    await db.collection('status').where({
         openid: event.openid,
       })
       .update({
@@ -1046,7 +1042,7 @@ function passProcess(event, context) {
         },
       });
     const _ = db.command
-    db.collection('pilotschool').where({
+    await db.collection('pilotschool').where({
         _id: event.sessionId
       })
       .update({
@@ -1058,37 +1054,33 @@ function passProcess(event, context) {
 
 }
 
-function addSession(event, context) {
+async function addSession(event, context) {
   if (event.currentAction === 2) {
     //这一坨用于编辑现有场次，event.currentAction为2。
     console.log('update', event)
     if (event.sessionType === "初面") {
-      console.log('准备更新初面数据', event.content)
-      console.log('将要更新的场次ID为', event.needUpdateId)
-      db.collection('firstinterview').where({
-          _id: event.needUpdateId
-        })
-        .update({
-          data: {
-            address: event.content.address,
-            city: event.content.city,
-            date: event.content.date,
-            place: event.content.place,
-            liaisonOfficer: event.content.liaisonOfficer,
-            location: {
-              latitude: event.content.location.latitude,
-              longitude: event.content.location.longitude,
-              name: event.content.location.name
-            }
-          },
-        })
+      console.log('准备更新初面数据', event.content);
+      console.log('将要更新的场次ID为', event.needUpdateId);
+      await db.collection('firstinterview').doc(event.needUpdateId).update({
+        data: {
+          address: event.content.address,
+          city: event.content.city,
+          date: event.content.date,
+          place: event.content.place,
+          liaisonOfficer: event.content.liaisonOfficer,
+          location: {
+            latitude: event.content.location.latitude,
+            longitude: event.content.location.longitude,
+            name: event.content.location.name
+          }
+        },
+      });
+      return true
     }
     if (event.sessionType === "领导面") {
       console.log('准备更新领导面数据', event.content)
       console.log('将要更新的场次ID为', event.needUpdateId)
-      db.collection('secondinterview').where({
-          _id: event.needUpdateId
-        })
+      await db.collection('secondinterview').doc(event.needUpdateId)
         .update({
           data: {
             address: event.content.address,
@@ -1103,13 +1095,12 @@ function addSession(event, context) {
             }
           },
         })
+      return true
     }
     if (event.sessionType === "终审考核") {
       console.log('准备更新终审考核数据', event.content)
       console.log('将要更新的场次ID为', event.needUpdateId)
-      db.collection('finalinterview').where({
-          _id: event.needUpdateId
-        })
+      await db.collection('finalinterview').doc(event.needUpdateId)
         .update({
           data: {
             address: event.content.address,
@@ -1124,13 +1115,12 @@ function addSession(event, context) {
             }
           },
         })
+      return true
     }
     if (event.sessionType === "上站初检") {
       console.log('准备更新上站初检数据', event.content)
       console.log('将要更新的场次ID为', event.needUpdateId)
-      db.collection('firstphysicalcheck').where({
-          _id: event.needUpdateId
-        })
+      await db.collection('firstphysicalcheck').doc(event.needUpdateId)
         .update({
           data: {
             address: event.content.address,
@@ -1145,13 +1135,12 @@ function addSession(event, context) {
             }
           },
         })
+      return true
     }
     if (event.sessionType === "上站复检") {
       console.log('准备更新上站复检数据', event.content)
       console.log('将要更新的场次ID为', event.needUpdateId)
-      db.collection('secondphysicalcheck').where({
-          _id: event.needUpdateId
-        })
+      await db.collection('secondphysicalcheck').doc(event.needUpdateId)
         .update({
           data: {
             address: event.content.address,
@@ -1166,13 +1155,12 @@ function addSession(event, context) {
             }
           },
         })
+      return true
     }
     if (event.sessionType === "航校面试") {
       console.log('准备更新航校面试数据', event.content)
       console.log('将要更新的场次ID为', event.needUpdateId)
-      db.collection('pilotschool').where({
-          _id: event.needUpdateId
-        })
+      await db.collection('pilotschool').doc(event.needUpdateId)
         .update({
           data: {
             address: event.content.address,
@@ -1190,6 +1178,7 @@ function addSession(event, context) {
             schooladdress: event.content.schooladdress
           },
         })
+      return true
     }
 
   } else {
@@ -1198,7 +1187,7 @@ function addSession(event, context) {
     console.log('add', event)
     if (event.sessionType === "初面") {
       console.log('准备新增初面数据', event.content)
-      db.collection('firstinterview').add({
+      await db.collection('firstinterview').add({
           data: {
             address: event.content.address,
             applicants: 0,
@@ -1216,10 +1205,11 @@ function addSession(event, context) {
         .then(res => {
           console.log(res)
         })
+      return true
     }
     if (event.sessionType === "领导面") {
       console.log('准备新增初面数据', event.content)
-      db.collection('secondinterview').add({
+      await db.collection('secondinterview').add({
           data: {
             address: event.content.address,
             applicants: 0,
@@ -1237,10 +1227,11 @@ function addSession(event, context) {
         .then(res => {
           console.log(res)
         })
+      return true
     }
     if (event.sessionType === "终审考核") {
       console.log('准备新增初面数据', event.content)
-      db.collection('finalinterview').add({
+      await db.collection('finalinterview').add({
           data: {
             address: event.content.address,
             applicants: 0,
@@ -1258,10 +1249,11 @@ function addSession(event, context) {
         .then(res => {
           console.log(res)
         })
+      return true
     }
     if (event.sessionType === "上站初检") {
       console.log('准备新增上站初检数据', event.content)
-      db.collection('firstphysicalcheck').add({
+      await db.collection('firstphysicalcheck').add({
           data: {
             address: event.content.address,
             applicants: 0,
@@ -1279,10 +1271,11 @@ function addSession(event, context) {
         .then(res => {
           console.log(res)
         })
+      return true
     }
     if (event.sessionType === "上站复检") {
       console.log('准备新增上站复检数据', event.content)
-      db.collection('secondphysicalcheck').add({
+      await db.collection('secondphysicalcheck').add({
           data: {
             address: event.content.address,
             applicants: 0,
@@ -1300,10 +1293,11 @@ function addSession(event, context) {
         .then(res => {
           console.log(res)
         })
+      return true
     }
     if (event.sessionType === "航校面试") {
       console.log('准备新增航校面试数据', event.content)
-      db.collection('pilotschool').add({
+      await db.collection('pilotschool').add({
           data: {
             address: event.content.address,
             city: event.content.city,
@@ -1324,8 +1318,10 @@ function addSession(event, context) {
         .then(res => {
           console.log(res)
         })
+      return true
     }
   }
+
 }
 
 async function deleteSession(event, context) {
@@ -1649,7 +1645,7 @@ async function getStudentList(event, context) {
           }
         } else {
           //踩过的坑：FOReach循环内部是异步不按顺序执行，很可能导致resolve时前序还未完成，所以全部换成原生for循环
-          for (let index = 0; index < waitingReturnData.finalinterview.length;index++){
+          for (let index = 0; index < waitingReturnData.finalinterview.length; index++) {
             console.log(waitingReturnData.finalinterview[index], index, waitingReturnData.finalinterview.length)
             let cvdata = await db.collection('cv').where({
               openid: waitingReturnData.finalinterview[index],
@@ -1683,7 +1679,7 @@ async function getStudentList(event, context) {
               }
             }
           }
-       
+
         }
       }).then(() => {
         console.log('resolve666', returnfirstinterviewOpenid)
@@ -2223,7 +2219,7 @@ exports.main = async(event, context) => {
     return getAllInterview(event, context)
   }
   if (event.type === "addSession") {
-    return addSession(event, context)
+    return await addSession(event, context)
   }
   if (event.type === "getOriginalSessionData") {
     return getOriginalSessionData(event, context)

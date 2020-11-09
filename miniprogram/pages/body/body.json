@@ -9,5 +9,8 @@
     "mp-form": "../components/form/form",
     "mp-dialog": "../../components/dialog/dialog"
   },
-  "navigationBarTitleText": "身体综合自检"
+  "navigationBarTitleText": "身体综合自检",
+  "navigationBarTextStyle": "white",
+  "navigationBarBackgroundColor": "#222222"
+
 }

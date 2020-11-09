@@ -39,7 +39,7 @@
           <image src="../../images/instruction.png" mode="widthFix" class="fastEnter-item-image"></image>
           <view class="fastEnter-item-text">简章</view>
         </view>
-        <view class="fastEnter-item"  bindtap="onShowWeb" data-content="tijian">
+        <view class="fastEnter-item"  bindtap="onShowWeb" data-conte nt="tijian">
           <image src="../../images/body.png" mode="widthFix" class="fastEnter-item-image"></image>
           <view class="fastEnter-item-text">体检</view>
         </view>
@@ -49,7 +49,7 @@
         </view>
         <view class="fastEnter-item"  bindtap="onShowWeb" data-content="fenxiang">
           <image src="../../images/share.png" mode="widthFix" class="fastEnter-item-image"></image>
-          <view class="fastEnter-item-text"  bindtap="onShowWeb" data-content="fenxiang">分享</view>
+          <view class="fastEnter-item-text">分享</view>
         </view>
       </view>
       <view class="suggest">
@@ -87,17 +87,7 @@
           </view>
         </view>
       </view>
-
-      <view class="suggest">
-        大毕改招飞宣传视频
-      </view>
-
-      <view class="video">
-        <txv-video vid="x03051n1kz6" playerid="txv1"></txv-video>
-      </view>
-     <view class="suggest">
-        .
-      </view>
+     
 
     </view>
   </view>

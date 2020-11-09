@@ -26,7 +26,7 @@
       <view class="content-block-item" wx:for="{{interview.firstinterview}}" bindtap="onTouchItem" data-index="{{item}}" data-type="firstinterview">
         <view class="content-block-item-line1">
           <view class="content-block-item-line1-name">{{item.info.name}}</view>
-          <view class="content-block-item-line1-session">{{item.info.dateFormat}} {{item.info.timeFormat}} {{item.session.city}}场</view>
+          <view class="content-block-item-line1-session">{{item.session.dateFormat}} {{item.session.timeFormat}} {{item.session.city}}场</view>
         </view>
         <view class="content-block-item-line23">
           {{item.info.university}} {{item.info.major}} {{item.info.height}}CM {{item.info.weight}}KG

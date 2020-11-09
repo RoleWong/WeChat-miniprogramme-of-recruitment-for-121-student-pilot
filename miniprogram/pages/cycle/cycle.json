@@ -9,5 +9,7 @@
     "mp-form": "../components/form/form",
     "mp-dialog": "../../components/dialog/dialog"
   },
-  "navigationBarTitleText": "循环项目自检"
+  "navigationBarTitleText": "循环项目自检",
+  "navigationBarTextStyle": "white",
+  "navigationBarBackgroundColor": "#222222"
 }

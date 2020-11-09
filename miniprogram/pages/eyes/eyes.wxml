@@ -8,28 +8,29 @@
   </view>
 
   <view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
-    <view class="page__bd">
+    <view class="page__bd ">
       <form bindsubmit="formSubmit" bindreset="formReset">
         <mp-form id="form">
 
-          <mp-cells title="左眼信息" footer="以上信息均为左眼数据。">
-            <mp-cell title="屈光情况">
-              <picker bindchange="bindLeftQuguangPickerChange" value="{{leftQuguangIndex}}" range="{{quguangArray}}">
-                <view class="weui-input">
+          <mp-cells title="" footer="" ext-class="darkModeBlock">
+            <view class="darkModeBlock_remind">左眼信息</view>
+            <mp-cell title="屈光情况" ext-class="darkModeBlock">
+              <picker class="darkModeBlock" bindchange="bindLeftQuguangPickerChange" value="{{leftQuguangIndex}}" range="{{quguangArray}}">
+                <view class="weui-input darkModeBlock">
                   {{quguangArray[leftQuguangIndex]}}
                 </view>
               </picker>
             </mp-cell>
-            <mp-cell title="近视度数" wx:if="{{leftQuguangIndex==0}}">
-              <slider name="leftjinshi" min="25" max="450" step="25" value="200" show-value/>
+            <mp-cell title="近视度数" wx:if="{{leftQuguangIndex==0}}" ext-class="darkModeBlock">
+              <slider name="leftjinshi" min="25" max="450" step="25" value="200" activeColor="a91f51" show-value/>
             </mp-cell>
-            <mp-cell title="远视度数" wx:if="{{leftQuguangIndex==1}}">
-              <slider name="leftyuanshi" min="25" max="300" step="25" value="150" show-value/>
+            <mp-cell title="远视度数" wx:if="{{leftQuguangIndex==1}}" ext-class="darkModeBlock">
+              <slider name="leftyuanshi" min="25" max="300" step="25" value="150" activeColor="a91f51" show-value/>
             </mp-cell>
-            <mp-cell title="散光度数" wx:if="{{leftQuguangIndex==0 || leftQuguangIndex==1}}">
-              <slider name="leftsanguang" min="0" max="250" step="25" value="100" show-value/>
+            <mp-cell title="散光度数" wx:if="{{leftQuguangIndex==0 || leftQuguangIndex==1}}" ext-class="darkModeBlock">
+              <slider name="leftsanguang" min="0" max="250" step="25" value="100" activeColor="a91f51" show-value/>
             </mp-cell>
-            <mp-cell title="能否辨认C字表1.0" wx:if="{{leftQuguangIndex==2}}">
+            <mp-cell title="能否辨认C字表1.0" wx:if="{{leftQuguangIndex==2}}" ext-class="darkModeBlock">
               <picker bindchange="bindLeftOnePickerChange" value="{{leftOneSeeIndex}}" range="{{isOrNo}}">
                 <view class="weui-input">
                   {{isOrNo[leftOneSeeIndex]}}
@@ -38,25 +39,26 @@
             </mp-cell>
 
           </mp-cells>
-
-          <mp-cells title="右眼信息" footer="以上信息均为右眼数据。">
-            <mp-cell title="屈光情况">
+          <view class="darkModeBlockSeperate">.</view>
+          <mp-cells title="" ext-class="darkModeBlock">
+            <view class="darkModeBlock_remind">右眼信息</view>
+            <mp-cell title="屈光情况" ext-class="darkModeBlock">
               <picker bindchange="bindRightQuguangPickerChange" value="{{rightQuguangIndex}}" range="{{quguangArray}}">
                 <view class="weui-input">
                   {{quguangArray[rightQuguangIndex]}}
                 </view>
               </picker>
             </mp-cell>
-            <mp-cell title="近视度数" wx:if="{{rightQuguangIndex==0}}">
-              <slider name="rightjinshi" min="25" max="450" step="25" value="200" show-value/>
+            <mp-cell title="近视度数" wx:if="{{rightQuguangIndex==0}}" ext-class="darkModeBlock">
+              <slider name="rightjinshi" min="25" max="450" step="25" value="200" activeColor="a91f51" show-value/>
             </mp-cell>
-            <mp-cell title="远视度数" wx:if="{{rightQuguangIndex==1}}">
-              <slider name="rightyuanshi" min="25" max="300" step="25" value="150" show-value/>
+            <mp-cell title="远视度数" wx:if="{{rightQuguangIndex==1}}" ext-class="darkModeBlock">
+              <slider name="rightyuanshi" min="25" max="300" step="25" value="150" activeColor="a91f51" show-value/>
             </mp-cell>
-            <mp-cell title="散光度数" wx:if="{{rightQuguangIndex==0 || rightQuguangIndex==1}}">
-              <slider name="rightsanguang" min="0" max="250" step="25" value="100" show-value/>
+            <mp-cell title="散光度数" wx:if="{{rightQuguangIndex==0 || rightQuguangIndex==1}}" ext-class="darkModeBlock">
+              <slider name="rightsanguang" min="0" max="250" step="25" value="100" activeColor="a91f51" show-value/>
             </mp-cell>
-            <mp-cell title="能否辨认C字表1.0" wx:if="{{rightQuguangIndex==2}}">
+            <mp-cell title="能否辨认C字表1.0" wx:if="{{rightQuguangIndex==2}}" ext-class="darkModeBlock">
               <picker bindchange="bindRightOnePickerChange" value="{{rightOneSeeIndex}}" range="{{isOrNo}}">
                 <view class="weui-input">
                   {{isOrNo[rightOneSeeIndex]}}
@@ -69,7 +71,7 @@
         </mp-form>
 
         <view class="weui-btn-area">
-          <button class="weui-btn margin-bottom" type="primary" formType="submit">{{buttonText}}</button>
+          <button class="weui-btn margin-bottom button" hover-class="weui-btn margin-bottom buttonHover" type="" formType="submit">{{buttonText}}</button>
         </view>
       </form>
     </view>
@@ -79,6 +81,7 @@
     <icon type="success" size="50" class="remind-icon"></icon>
     <view class="remind-text">恭喜，您的视力数据符合要求。</view>
   </view>
+
 
   <view class="remindback" wx:if="{{failed}}">
     <icon type="cancel" size="50" class="remind-icon" color="#a91f51"></icon>

@@ -24,7 +24,7 @@ Page({
         })
       },
       fail: console.error
-    })
+    }) 
   },
 
   onShow: function() {

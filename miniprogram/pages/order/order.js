@@ -18,11 +18,28 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: async function(options) {
+    console.log("onload")
     var that = this;
-
+    
+    console.log(this.data.orderStatus, app.globalData.orderStatus)
     this.setData({
       orderStatus: app.globalData.orderStatus,
+    })
+
+    wx.cloud.callFunction({
+      name: 'db',
+      data: {
+        type: 'getInterview',
+        session: that.data.orderStatus,
+      },
+      success: function (res) {
+        that.setData({
+          interview: res.result.data,
+        });
+        console.log(that.data.interview);
+      },
+      fail: console.error
     })
 
     if (app.globalData.orderStatus === 'firstinterview') {
@@ -52,28 +69,6 @@ Page({
       });
     }
 
-
-    wx.cloud.callFunction({
-      name: 'db',
-      data: {
-        type: 'getInterview',
-        session: that.data.orderStatus,
-      },
-      success: function(res) {
-        that.setData({
-          interview: res.result.data,
-        });
-        console.log(that.data.interview);
-
-      },
-      fail: console.error
-    })
-
-  },
-  onShow: function() {
-    console.log(this.data.orderStatus, app.globalData.orderStatus)
-    this.onLoad()
-    
   },
 
   radioChange: function(e) {
@@ -112,6 +107,7 @@ Page({
         selected: 1
       })
     }
+    this.onLoad()
 
   },
 })

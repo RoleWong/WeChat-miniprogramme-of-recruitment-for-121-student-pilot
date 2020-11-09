@@ -8,38 +8,38 @@
     <form bindsubmit="formSubmit" bindreset="formReset">
       <mp-form id="form">
 
-        <mp-cells title="基本信息" footer="以上信息全部必填">
-          <mp-cell title="姓名">
+        <mp-cells title="基本信息" footer="">
+          <mp-cell title="* 姓名">
             <input class="weui-input" placeholder="请输入中文全名" name="name" />
           </mp-cell>
-          <mp-cell title="民族">
+          <mp-cell title="* 民族">
             <input class="weui-input" placeholder="" name="ethnicity" />
           </mp-cell>
-          <mp-cell title="出生日期">
+          <mp-cell title="* 出生日期">
             <picker value="{{birthDate}}" start="1996-01-01" end="2001-01-01" name="birthDate" mode="date" data-field="date" bindchange="bindBirthDateChange">
               <view class="weui-input">{{birthDate}}</view>
             </picker>
           </mp-cell>
-          <mp-cell title="户口所在地">
+          <mp-cell title="* 户口所在地">
             <picker name="birthCity" mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
               <view class="weui-input">{{region}}</view>
             </picker>
           </mp-cell>
-          <mp-cell title="身高">
+          <mp-cell title="* 身高">
             <input class="weui-input" type="number" placeholder="单位：cm" name="height" />
           </mp-cell>
-          <mp-cell title="体重">
+          <mp-cell title="* 体重">
             <input class="weui-input" type="number" placeholder="单位：kg" name="weight" />
           </mp-cell>
-          <mp-cell title="移动电话">
+          <mp-cell title="* 移动电话">
             <input class="weui-input" placeholder="仅限中国大陆手机号" name="mobile" />
           </mp-cell>
-          <mp-cell title="政治面貌">
+          <mp-cell title="* 政治面貌">
             <picker bindchange="bindPoliticalStatusChange" value="{{politicalStatusIndex}}" range="{{politicalStatus}}" name="politicalStatus">
               <view class="weui-input">{{politicalStatus[politicalStatusIndex]}}</view>
             </picker>
           </mp-cell>
-          <mp-cell title="身份证号">
+          <mp-cell title="* 身份证号">
             <input class="weui-input" type="idcard" placeholder="仅限中国大陆公民身份证" name="idcard" />
           </mp-cell>
           <button type="default" bindtap="onChooseImage">{{uploadButton}}</button>
@@ -49,62 +49,62 @@
         </mp-cells>
 
         <mp-cells title="教育背景">
-          <mp-cell title="毕业院校">
+          <mp-cell title="* 毕业院校">
             <input class="weui-input" placeholder="" name="university" />
           </mp-cell>
-          <mp-cell title="最高学历">
+          <mp-cell title="* 最高学历">
             <picker bindchange="bindEducationChange" value="{{educationIndex}}" range="{{education}}" name="education">
               <view class="weui-input">{{education[educationIndex]}}</view>
             </picker>
           </mp-cell>
-          <mp-cell title="入学时间">
+          <mp-cell title="* 入学时间">
             <picker value="{{entryDate}}" start="2009-09" end="2017-09" name="entryDate" mode="date" data-field="date" bindchange="bindEntryDateChange" fields="month">
               <view class="weui-input">{{entryDate}}</view>
             </picker>
           </mp-cell>
-          <mp-cell title="毕业时间">
+          <mp-cell title="* 毕业时间">
             <picker value="{{graduatedDate}}" start="2013-09" end="2021-09" name="graduateDate" mode="date" data-field="date" bindchange="bindGraduateChange" fields="month">
               <view class="weui-input">{{graduatedDate}}</view>
             </picker>
           </mp-cell>
-          <mp-cell title="主修专业">
+          <mp-cell title="* 主修专业">
             <input class="weui-input" placeholder="" name="major" />
           </mp-cell>
-          <mp-cell title="英语等级">
+          <mp-cell title="* 英语等级">
             <picker bindchange="bindEnglishLevelChange" value="{{englishLevelIndex}}" range="{{englishLevel}}" name="englishLevel">
               <view class="weui-input">{{englishLevel[englishLevelIndex]}}</view>
             </picker>
           </mp-cell>
-          <mp-cell title="该等级分数">
+          <mp-cell title="* 该等级分数">
             <input class="weui-input" placeholder="" type="digit" name="englishScore" />
           </mp-cell>
           <view class="weui-cell weui-cell_switch">
-            <view class="weui-cell__bd">第一学历为全日制本科</view>
+            <view class="weui-cell__bd">* 第一学历为全日制本科</view>
             <view class="weui-cell__ft">
               <switch name="ifNormalBachelor" />
             </view>
           </view>
           <view class="weui-cell weui-cell_switch">
-            <view class="weui-cell__bd">主修专业为艺术体育类</view>
+            <view class="weui-cell__bd">* 主修专业为艺术体育类</view>
             <view class="weui-cell__ft">
               <switch name="ifArtAndPhysics" />
             </view>
           </view>
           <view class="weui-cell weui-cell_switch">
-            <view class="weui-cell__bd">参加过招飞上站体检</view>
+            <view class="weui-cell__bd">* 参加过招飞上站体检</view>
             <view class="weui-cell__ft">
               <switch name="ifPhysicalChecked" />
             </view>
           </view>
           <view class="weui-cell weui-cell_switch">
-            <view class="weui-cell__bd">有过飞行学习经历</view>
+            <view class="weui-cell__bd">* 有过飞行学习经历</view>
             <view class="weui-cell__ft">
               <switch name="ifPilotStudy" />
             </view>
           </view>
         </mp-cells>
 
-        <mp-cells title="最近工作或实习经历" footer="如无工作（实习）经历，本区域可不填">
+        <mp-cells title="最近工作或实习经历" footer="">
           <mp-cell title="工作单位">
             <input class="weui-input" placeholder="" name="company" />
           </mp-cell>
@@ -120,28 +120,28 @@
         </mp-cells>
 
         <mp-cells title="家庭情况">
-          <mp-cell title="父亲姓名">
+          <mp-cell title="* 父亲姓名">
             <input class="weui-input" placeholder="" name="fatherName" />
           </mp-cell>
-          <mp-cell title="父亲年龄">
+          <mp-cell title="* 父亲年龄">
             <input class="weui-input" type="number" placeholder="" name="fatherAge" />
           </mp-cell>
-          <mp-cell title="父亲工作单位">
+          <mp-cell title="* 父亲单位">
             <input class="weui-input" placeholder="" name="fatherWork" />
           </mp-cell>
-          <mp-cell title="父亲联系方式">
+          <mp-cell title="* 父亲电话">
             <input class="weui-input" placeholder="" type="number" name="fatherTel" />
           </mp-cell>
-          <mp-cell title="母亲姓名">
+          <mp-cell title="* 母亲姓名">
             <input class="weui-input" placeholder="" name="motherName" />
           </mp-cell>
-          <mp-cell title="母亲年龄">
+          <mp-cell title="* 母亲年龄">
             <input class="weui-input" type="number" placeholder="" name="motherAge" />
           </mp-cell>
-          <mp-cell title="母亲工作单位">
+          <mp-cell title="* 母亲单位">
             <input class="weui-input" placeholder="" name="motherWork" />
           </mp-cell>
-          <mp-cell title="母亲联系方式">
+          <mp-cell title="* 母亲电话">
             <input class="weui-input" placeholder="" type="number" name="motherTel" />
           </mp-cell>
         </mp-cells>

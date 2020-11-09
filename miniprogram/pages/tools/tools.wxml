@@ -103,9 +103,8 @@
   </view>
 
   <view class="statement">
-    <view>本区域图标大部分来自iconfont平台</view>
     <view>
-      <image src="../../images/tencent.png" mode="widthFix"></image><text class=""> | 腾讯云云开发提供技术支持</text>
+      <image src="../../images/tencent.png" mode="widthFix"></image><text class=""> | 腾讯云提供计算服务</text>
     </view>
 
   </view>

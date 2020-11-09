@@ -34,14 +34,19 @@ Page({
         value: 1
       },
       {
-        text: '通过该步骤',
+        text: '呼叫',
         value: 2
+      },
+      {
+        text: '通过该步骤',
+        value: 3
       },
       {
         text: '放弃',
         type: 'warn',
-        value: 3
-      }
+        value: 4
+      },
+
     ],
     currentActionType: '',
     confirmShow: false,
@@ -198,16 +203,22 @@ Page({
 
   },
   btnActionsheetClick(e) {
+    var that = this
     if (e.detail.value === 1) {
       this.showDetails()
     }
     if (e.detail.value === 2) {
+      wx.makePhoneCall({
+        phoneNumber: that.data.details_content[0].info.mobile
+      })
+    }
+    if (e.detail.value === 3) {
       this.setData({
         confirmShow: true,
         showActionsheet: false
       });
     }
-    if (e.detail.value === 3) {
+    if (e.detail.value === 4) {
       this.setData({
         giveupShow: true,
         showActionsheet: false

@@ -10,21 +10,21 @@
       <form bindsubmit="formSubmit" bindreset="formReset">
         <mp-form id="form">
 
-          <mp-cells title="" footer="">
-            <mp-cell title="疾病">
+          <mp-cells title="" footer="" ext-class="darkModeBlock">
+            <mp-cell title="疾病"ext-class="darkModeBlock">
               <checkbox-group name="xinxueguanjibing">
                 <label>
                   <checkbox value="xinxueguanjibing" checked="false" /> 无心血管系统疾病
                 </label>
               </checkbox-group>
             </mp-cell>
-            <mp-cell title="血压-收缩压">
+            <mp-cell title="血压-收缩压"ext-class="darkModeBlock">
               <slider name="shousuoya" min="50" max="180" step="1" value="120" show-value/>
             </mp-cell>
-            <mp-cell title="血压-舒张压">
+            <mp-cell title="血压-舒张压"ext-class="darkModeBlock">
               <slider name="shuzhangya" min="40" max="120" step="1" value="80" show-value/>
             </mp-cell>
-            <mp-cell title="心率">
+            <mp-cell title="心率"ext-class="darkModeBlock">
               <slider name="xinlv" min="30" max="130" step="1" value="80" show-value/>
             </mp-cell>
           </mp-cells>
@@ -32,7 +32,7 @@
         </mp-form>
 
         <view class="weui-btn-area">
-          <button class="weui-btn margin-bottom" type="primary" formType="submit">{{buttonText}}</button>
+          <button class="weui-btn margin-bottom button" hover-class="weui-btn margin-bottom buttonHover"  formType="submit">{{buttonText}}</button>
         </view>
       </form>
     </view>

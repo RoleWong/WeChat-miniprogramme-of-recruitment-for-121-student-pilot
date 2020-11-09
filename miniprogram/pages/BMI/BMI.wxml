@@ -9,26 +9,28 @@
       <form bindsubmit="formSubmit" bindreset="formReset">
         <mp-form id="form">
 
-          <mp-cells title="BMI" footer="">
-            <mp-cell title="身高（CM）">
+          <mp-cells title="" footer="" ext-class="darkModeBlock">
+            <view class="darkModeBlock_remind">BMI</view>
+            <mp-cell title="身高（CM）" ext-class="darkModeBlock">
               <slider name="height" min="165" max="190" step="1" value="183" show-value/>
             </mp-cell>
-            <mp-cell title="体重（KG）">
+            <mp-cell title="体重（KG）" ext-class="darkModeBlock">
               <slider name="weight" min="40" max="110" step="1" value="80" show-value/>
             </mp-cell>
 
           </mp-cells>
-
-          <mp-cells title="外科病症">
-            <mp-checkbox-group prop="checkbox" multi="{{true}}" bindchange="checkboxChange">
-              <mp-checkbox wx:for="{{checkboxItems}}" wx:key="value" label="{{item.name}}" value="{{item.value}}" checked="{{item.checked}}"></mp-checkbox>
+          <view class="darkModeBlockSeperate">.</view>
+          <mp-cells title="" ext-class="darkModeBlock">
+            <view class="darkModeBlock_remind">外科病症</view>
+            <mp-checkbox-group prop="checkbox" multi="{{true}}" bindchange="checkboxChange" ext-class="darkModeBlock">
+              <mp-checkbox wx:for="{{checkboxItems}}" wx:key="value" label="{{item.name}}" value="{{item.value}}" checked="{{item.checked}}" ext-class="darkModeBlock"></mp-checkbox>
             </mp-checkbox-group>
           </mp-cells>
 
         </mp-form>
 
         <view class="weui-btn-area">
-          <button class="weui-btn margin-bottom" type="primary" formType="submit">{{buttonText}}</button>
+          <button class="weui-btn margin-bottom button" hover-class="weui-btn margin-bottom buttonHover"  type="" formType="submit">{{buttonText}}</button>
         </view>
       </form>
     </view>

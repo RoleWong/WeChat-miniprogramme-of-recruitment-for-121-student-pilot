@@ -32,11 +32,9 @@
           <text class="background-uploader-add-icon">+</text>
           <text class="background-uploader-add-des">点击拍摄/上传确认页</text>
         </view>
-        <image src="{{photos.confirmationtempFilePaths}}" wx:if="{{photos.confirmationtempFilePaths}}" class="background-uploader-thumbnail" mode="aspectFit"></image>
+        <image  src="{{photos.confirmationtempFilePaths}}" wx:if="{{photos.confirmationtempFilePaths}}" class="background-uploader-thumbnail" mode="aspectFit"></image>
         <view class="first-remind-text-2" wx:if="{{photos.confirmationtempFilePaths}}" >点击修改确认页</view>
-        
       </view>
-
 
     </view>
   </view>

@@ -1,7 +1,8 @@
 <scroll-view scroll-y="true">
   <view class="header">
     <view class="title">民航招飞体检报名自检</view>
-    <view class="remind">本测试源于<a style="color:#576b95" bindtap="onShowPicture" data-index="tijian">中国民航局“民用航空人员招飞体检鉴定信息平台”（点击预览）</a>，您可在此处尝试作答，判断自己是否符合。</view>
+    <view class="remind">本测试源于中国民航局
+      “民用航空人员招飞体检鉴定信息平台”，您可在此处尝试作答，判断自己是否符合。</view>
   </view>
 
   <view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
@@ -9,22 +10,24 @@
       <form bindsubmit="formSubmit" bindreset="formReset">
         <mp-form id="form">
 
-          <mp-cells title="身体状况（若有所述情况，请勾选）">
-            <mp-checkbox-group prop="checkbox" multi="{{true}}" bindchange="checkboxChange_body">
-              <mp-checkbox wx:for="{{checkboxItems_body}}" wx:key="value" label="{{item.name}}" value="{{item.value}}" checked="{{item.checked}}"></mp-checkbox>
+          <mp-cells title="" ext-class="darkModeBlock">
+            <view class="darkModeBlock_remind">身体状况（若有所述情况，请勾选）</view>
+            <mp-checkbox-group prop="checkbox" multi="{{true}}" bindchange="checkboxChange_body" ext-class="darkModeBlock">
+              <mp-checkbox wx:for="{{checkboxItems_body}}" wx:key="value" label="{{item.name}}" value="{{item.value}}" checked="{{item.checked}}" color="#a91f51" ext-class="darkModeBlock"></mp-checkbox>
             </mp-checkbox-group>
           </mp-cells>
-
-          <mp-cells title="家族史（若有所述情况，请勾选）">
-            <mp-checkbox-group prop="checkbox" multi="{{true}}" bindchange="checkboxChange_family">
-              <mp-checkbox wx:for="{{checkboxItems_family}}" wx:key="value" label="{{item.name}}" value="{{item.value}}" checked="{{item.checked}}"></mp-checkbox>
+          <view class="darkModeBlockSeperate">.</view>
+          <mp-cells title="" ext-class="darkModeBlock">
+            <view class="darkModeBlock_remind">家族史（若有所述情况，请勾选）</view>
+            <mp-checkbox-group prop="checkbox" multi="{{true}}" bindchange="checkboxChange_family" ext-class="darkModeBlock">
+              <mp-checkbox wx:for="{{checkboxItems_family}}" wx:key="value" label="{{item.name}}" value="{{item.value}}" checked="{{item.checked}}" ext-class="darkModeBlock" color="#a91f51"></mp-checkbox>
             </mp-checkbox-group>
           </mp-cells>
 
         </mp-form>
 
         <view class="weui-btn-area">
-          <button class="weui-btn margin-bottom" type="primary" formType="submit">{{buttonText}}</button>
+          <button class="weui-btn margin-bottom button" hover-class="weui-btn margin-bottom buttonHover" formType="submit">{{buttonText}}</button>
         </view>
       </form>
     </view>
